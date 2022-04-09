@@ -1,2 +1,5 @@
 import TextButton from "./TextButton";
-export { TextButton };
+import FormInput from "./FormInput";
+import CustomSwitch from "./CustomSwitch";
+import TextIconButton from "./TextIconButton";
+export { TextButton, TextIconButton, FormInput, CustomSwitch };

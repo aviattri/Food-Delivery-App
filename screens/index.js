@@ -5,5 +5,6 @@ import SignIn from "./Authentication/SignIn";
 import SignUp from "./Authentication/SignUp";
 import Otp from "./Authentication/Otp";
 import ForgotPassword from "./Authentication/ForgotPassword";
+import AuthLayout from "./Authentication/AuthLayout";
 
-export { OnBoarding, SignIn, SignUp, Otp, ForgotPassword };
+export { OnBoarding, SignIn, SignUp, Otp, ForgotPassword, AuthLayout };
