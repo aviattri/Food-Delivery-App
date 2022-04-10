@@ -33,6 +33,12 @@ const screens = {
   favourite: "Favourite",
   notification: "Notification",
   my_wallet: "My Wallet",
+  coupon: "Coupons",
+  track_order: "Track Your Orders",
+  settings: "Setttings",
+  refer_friend: "Invite A Friend",
+  help_center: "Help Center",
+  logout: "Logout",
 };
 
 const bottom_tabs = [
