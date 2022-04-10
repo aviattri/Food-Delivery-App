@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { OnBoarding, SignIn, SignUp, ForgotPassword, Otp } from "./screens";
-import { useFonts } from "expo-font";
+import React, { useContext, useState } from "react";
 
-const Stack = createStackNavigator();
+import { useFonts } from "expo-font";
+import AppContextProvider from "./appContext/AppContextProvider";
+import AppNavigation from "./appContext/AppNavigation";
 
 const App = () => {
   const [loaded] = useFonts({
@@ -30,24 +28,9 @@ const App = () => {
   if (!loaded) return null;
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={"OnBoarding"}
-      >
-        <Stack.Screen name="OnBoarding" component={OnBoarding} />
-
-        <Stack.Screen name="SignIn" component={SignIn} />
-
-        <Stack.Screen name="SignUp" component={SignUp} />
-
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-
-        <Stack.Screen name="Otp" component={Otp} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AppContextProvider>
+      <AppNavigation />
+    </AppContextProvider>
   );
 };
 

@@ -5,7 +5,7 @@ import { SIZES, COLORS, FONTS, icons } from "../../constants";
 import { FormInput, TextButton } from "../../components";
 import { utils } from "../../utils";
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
@@ -71,7 +71,7 @@ const ForgotPassword = () => {
             ? COLORS.primary
             : COLORS.transparentPrimary,
         }}
-        onPress={() => console.log("send Email")}
+        onPress={() => navigation.goBack()}
       />
     </AuthLayout>
   );

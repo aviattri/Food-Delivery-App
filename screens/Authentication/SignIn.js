@@ -1,5 +1,5 @@
 import { View, Text, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthLayout } from "../";
 import { COLORS, FONTS, icons, SIZES } from "../../constants";
 import {
@@ -10,7 +10,11 @@ import {
 } from "../../components";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { utils } from "../../utils";
+import { AppContext } from "../../appContext/AppContextProvider";
+
 const SignIn = ({ navigation }) => {
+  const { state, authContext, dispatch } = useContext(AppContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -32,7 +36,7 @@ const SignIn = ({ navigation }) => {
           marginTop: SIZES.padding * 2,
         }}
       >
-        {/* Form Input Section */}
+        {/* Form Input Secxtion */}
         <FormInput
           label="Email"
           keyboardType="email-address"
@@ -129,6 +133,9 @@ const SignIn = ({ navigation }) => {
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
+          onPress={() =>
+            dispatch({ type: "SIGN_IN", token: "dummy-auth-token" })
+          }
         />
         {/* SignUp */}
         <View
