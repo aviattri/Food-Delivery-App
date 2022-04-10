@@ -1,8 +1,9 @@
+import "react-native-gesture-handler";
 import React, { useContext, useState } from "react";
 
 import { useFonts } from "expo-font";
 import AppContextProvider from "./appContext/AppContextProvider";
-import AppNavigation from "./appContext/AppNavigation";
+import AppNavigation from "./navigation/AppNavigation";
 
 const App = () => {
   const [loaded] = useFonts({

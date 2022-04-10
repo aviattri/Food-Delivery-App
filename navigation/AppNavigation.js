@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import CustomDrawer from "./CustomDrawer";
+
 import {
   OnBoarding,
   SignIn,
@@ -10,7 +12,7 @@ import {
   Home,
 } from "../screens";
 
-import { AppContext } from "./AppContextProvider";
+import { AppContext } from "../appContext/AppContextProvider";
 
 const Stack = createStackNavigator();
 
@@ -41,7 +43,13 @@ const AppNavigation = () => {
           </>
         ) : (
           // User is signed in
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            screenOptions={{
+              headerShown: false,
+            }}
+            name="Home"
+            component={CustomDrawer}
+          />
         )}
       </Stack.Navigator>
     </NavigationContainer>
