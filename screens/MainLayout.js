@@ -14,11 +14,11 @@ const MainLayout = (props) => {
 
   const borderTopLeftRadius = Animated.interpolateNode(progress.value, {
     inputRange: [0, 1],
-    outputRange: [0, 100],
+    outputRange: [0, 20],
   });
   const borderBottomLeftRadius = Animated.interpolateNode(progress.value, {
     inputRange: [0, 1],
-    outputRange: [0, 100],
+    outputRange: [0, 20],
   });
   const animatedStyle = {
     borderTopLeftRadius,

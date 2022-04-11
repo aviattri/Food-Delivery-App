@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  useDrawerProgress,
 } from "@react-navigation/drawer";
 import MainLayout from "../screens/MainLayout";
 import {
@@ -16,8 +15,11 @@ import {
 } from "../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { connect } from "react-redux";
+import { setSelectedTab } from "../store/tab/tabActions";
+
 const Drawer = createDrawerNavigator();
-const CustomDrawerItem = ({ label, icon }) => {
+const CustomDrawerItem = ({ isFocused, onPress, label, icon }) => {
   return (
     <TouchableOpacity
       style={{
@@ -27,7 +29,9 @@ const CustomDrawerItem = ({ label, icon }) => {
         alignItems: "center",
         paddingLeft: SIZES.radius,
         borderRadius: SIZES.radius,
+        backgroundColor: isFocused ? COLORS.transparentBlack1 : null,
       }}
+      onPress={onPress}
     >
       <Image
         source={icon}
@@ -40,7 +44,7 @@ const CustomDrawerItem = ({ label, icon }) => {
   );
 };
 
-const CustomDrawerContent = ({ navigation }) => {
+const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -106,21 +110,44 @@ const CustomDrawerContent = ({ navigation }) => {
           }}
         >
           {/* 1. Home */}
-          <CustomDrawerItem label={constants.screens.home} icon={icons.home} />
+          <CustomDrawerItem
+            label={constants.screens.home}
+            icon={icons.home}
+            isFocused={selectedTab == constants.screens.home}
+            onPress={() => {
+              setSelectedTab(constants.screens.home);
+              navigation.navigate("MainLayout");
+            }}
+          />
           {/* Wallet  */}
           <CustomDrawerItem
             label={constants.screens.my_wallet}
             icon={icons.wallet}
+            isFocused={selectedTab == constants.screens.my_wallet}
+            onPress={() => {
+              setSelectedTab(constants.screens.my_wallet);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* Notification */}
           <CustomDrawerItem
             label={constants.screens.notification}
             icon={icons.notification}
+            isFocused={selectedTab == constants.screens.notification}
+            onPress={() => {
+              setSelectedTab(constants.screens.notification);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* My Favourties */}
           <CustomDrawerItem
             label={constants.screens.favourite}
             icon={icons.location}
+            isFocused={selectedTab == constants.screens.favourite}
+            onPress={() => {
+              setSelectedTab(constants.screens.favourite);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* line divider */}
           <View
@@ -135,27 +162,52 @@ const CustomDrawerContent = ({ navigation }) => {
           <CustomDrawerItem
             label={constants.screens.track_order}
             icon={icons.location}
+            isFocused={selectedTab == constants.screens.track_order}
+            onPress={() => {
+              setSelectedTab(constants.screens.track_order);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* Coupons */}
           <CustomDrawerItem
             label={constants.screens.coupon}
             icon={icons.coupon}
+            isFocused={selectedTab == constants.screens.coupon}
+            onPress={() => {
+              setSelectedTab(constants.screens.coupon);
+              navigation.navigate("MainLayout");
+            }}
           />
 
           {/* Settings */}
           <CustomDrawerItem
             label={constants.screens.settings}
             icon={icons.setting}
+            isFocused={selectedTab == constants.screens.settings}
+            onPress={() => {
+              setSelectedTab(constants.screens.settings);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* Invite a Friend */}
           <CustomDrawerItem
             label={constants.screens.refer_friend}
             icon={icons.profile}
+            isFocused={selectedTab == constants.screens.refer_friend}
+            onPress={() => {
+              setSelectedTab(constants.screens.refer_friend);
+              navigation.navigate("MainLayout");
+            }}
           />
           {/* Help Center */}
           <CustomDrawerItem
             label={constants.screens.help_center}
             icon={icons.help}
+            isFocused={selectedTab == constants.screens.help_center}
+            onPress={() => {
+              setSelectedTab(constants.screens.help_center);
+              navigation.navigate("MainLayout");
+            }}
           />
         </View>
         <View
@@ -173,7 +225,8 @@ const CustomDrawerContent = ({ navigation }) => {
   );
 };
 
-const CustomDrawer = () => {
+const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
+  console.log(selectedTab);
   return (
     <View
       style={{
@@ -197,7 +250,13 @@ const CustomDrawer = () => {
           },
         }}
         drawerContent={(props) => {
-          return <CustomDrawerContent navigation={props.navigation} />;
+          return (
+            <CustomDrawerContent
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+              navigation={props.navigation}
+            />
+          );
         }}
         initialRouteName="MainLayout"
       >
@@ -209,4 +268,18 @@ const CustomDrawer = () => {
   );
 };
 
-export default CustomDrawer;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    selectedTab: state.tabReducer.selectedTab,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setSelectedTab: (selectedTab) => {
+      return dispatch(setSelectedTab(selectedTab));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer);

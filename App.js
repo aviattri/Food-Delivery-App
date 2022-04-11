@@ -5,6 +5,13 @@ import { useFonts } from "expo-font";
 import AppContextProvider from "./appContext/AppContextProvider";
 import AppNavigation from "./navigation/AppNavigation";
 
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import rootReducer from "./store/rootReducer";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 const App = () => {
   const [loaded] = useFonts({
     "Poppins-Black": require("./assets/fonts/Poppins-Black.ttf"),
@@ -29,9 +36,11 @@ const App = () => {
   if (!loaded) return null;
 
   return (
-    <AppContextProvider>
-      <AppNavigation />
-    </AppContextProvider>
+    <Provider store={store}>
+      <AppContextProvider>
+        <AppNavigation />
+      </AppContextProvider>
+    </Provider>
   );
 };
 
