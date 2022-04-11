@@ -1,8 +1,9 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
+  useDrawerProgress,
 } from "@react-navigation/drawer";
 import MainLayout from "../screens/MainLayout";
 import {
@@ -195,9 +196,9 @@ const CustomDrawer = () => {
             backgroundColor: "transparent",
           },
         }}
-        drawerContent={(props) => (
-          <CustomDrawerContent navigation={props.navigation} />
-        )}
+        drawerContent={(props) => {
+          return <CustomDrawerContent navigation={props.navigation} />;
+        }}
         initialRouteName="MainLayout"
       >
         <Drawer.Screen name="MainLayout">
