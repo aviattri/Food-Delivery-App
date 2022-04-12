@@ -7,25 +7,43 @@ import {
 import { COLORS, FONTS, SIZES } from "../constants";
 import Animated from "react-native-reanimated";
 
-const TabButton = ({ label, icon, isFocused, onPress }) => {
+const TabButton = ({
+  label,
+  icon,
+  isFocused,
+  onPress,
+  outerContainerStyle,
+  innerContainerStyle,
+}) => {
+  const innerStyle = isFocused
+    ? innerContainerStyle
+    : { backgroungColor: null };
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       {/* icon */}
       <Animated.View
-        style={{
-          flex: 1,
-          alignItems: "center",
-        }}
+        style={[
+          {
+            flex: 1,
+            marginTop: 40,
+            alignItems: "center",
+            justifyContent: "center",
+          },
+          outerContainerStyle,
+        ]}
       >
         <Animated.View
-          style={{
-            flexDirection: "row",
-            width: "70%",
-            height: 50,
-            alignItems: "center",
-            marginRight: 40,
-            borderRadius: 25,
-          }}
+          style={[
+            {
+              flexDirection: "row",
+              width: isFocused ? "80%" : "20%",
+              height: 50,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 25,
+            },
+            innerStyle,
+          ]}
         >
           {/* icon */}
           <Image
