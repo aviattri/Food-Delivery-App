@@ -9,7 +9,7 @@ import { useDrawerProgress } from "@react-navigation/drawer";
 import { LinearGradient } from "expo-linear-gradient";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../store/tab/tabActions";
-import { Home, Search, CartTab, Favourite, Notification } from "../screens";
+import { Home, Search, Cart, Favourite, Notification } from "../screens";
 
 import {
   SIZES,
@@ -22,8 +22,12 @@ import {
 import { Header, TabButton } from "../components";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
+  //FlatList Ref
+  const flatListRef = useRef();
+
   //Reanimated Shared value
   const homeTabFlex = useSharedValue(1);
   const homeTabColor = useSharedValue(COLORS.white);
@@ -93,6 +97,11 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
 
   useEffect(() => {
     if (selectedTab == constants.screens.home) {
+      //setFlatList Ref
+      flatListRef?.current?.scrollToIndex({
+        index: 0,
+        animated: false,
+      });
       homeTabFlex.value = withTiming(4, { duration: 500 });
       homeTabColor.value = withTiming(COLORS.primary, { duration: 500 });
     } else {
@@ -100,6 +109,10 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
       homeTabColor.value = withTiming(COLORS.white, { duration: 500 });
     }
     if (selectedTab == constants.screens.search) {
+      flatListRef?.current?.scrollToIndex({
+        index: 1,
+        animated: false,
+      });
       searchTabFlex.value = withTiming(4, { duration: 500 });
       searchTabColor.value = withTiming(COLORS.primary, { duration: 500 });
     } else {
@@ -107,6 +120,10 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
       searchTabColor.value = withTiming(COLORS.white, { duration: 500 });
     }
     if (selectedTab == constants.screens.cart) {
+      flatListRef?.current?.scrollToIndex({
+        index: 2,
+        animated: false,
+      });
       cartTabFlex.value = withTiming(4, { duration: 500 });
       cartTabColor.value = withTiming(COLORS.primary, { duration: 500 });
     } else {
@@ -114,6 +131,10 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
       cartTabColor.value = withTiming(COLORS.white, { duration: 500 });
     }
     if (selectedTab == constants.screens.favourite) {
+      flatListRef?.current?.scrollToIndex({
+        index: 3,
+        animated: false,
+      });
       favouriteTabFlex.value = withTiming(4, { duration: 500 });
       favouriteTabColor.value = withTiming(COLORS.primary, { duration: 500 });
     } else {
@@ -121,6 +142,10 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
       favouriteTabColor.value = withTiming(COLORS.white, { duration: 500 });
     }
     if (selectedTab == constants.screens.notification) {
+      flatListRef?.current?.scrollToIndex({
+        index: 4,
+        animated: false,
+      });
       notificationTabFlex.value = withTiming(4, { duration: 500 });
       notificationTabColor.value = withTiming(COLORS.primary, {
         duration: 500,
@@ -206,7 +231,36 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
           flex: 1,
         }}
       >
-        {/* <FlatList></FlatList> */}
+        <FlatList
+          ref={flatListRef}
+          horizontal
+          scrollEnabled={false}
+          pagingEnabled
+          snapToAlignment="center"
+          snapToInterval={SIZES.width}
+          showsHorizontalScrollIndicator={false}
+          data={constants.bottom_tabs}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item, index }) => {
+            return (
+              <View
+                style={{
+                  height: SIZES.height,
+                  width: SIZES.width,
+                  // backgroundColor: COLORS.black,
+                }}
+              >
+                {item.label == constants.screens.home && <Home />}
+                {item.label == constants.screens.search && <Search />}
+                {item.label == constants.screens.cart && <Cart />}
+                {item.label == constants.screens.favourite && <Favourite />}
+                {item.label == constants.screens.notification && (
+                  <Notification />
+                )}
+              </View>
+            );
+          }}
+        />
       </View>
 
       {/* Footer */}
@@ -296,7 +350,7 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     selectedTab: state.tabReducer.selectedTab,
   };
