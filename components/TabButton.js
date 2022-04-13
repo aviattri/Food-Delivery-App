@@ -51,7 +51,7 @@ const TabButton = ({
             style={{
               width: 20,
               height: 20,
-              tintColor: COLORS.gray,
+              tintColor: isFocused ? COLORS.white : COLORS.gray,
             }}
           />
           {/* label */}
@@ -60,7 +60,7 @@ const TabButton = ({
               numberOfLines={1}
               style={{
                 marginLeft: SIZES.base,
-                color: COLORS.gray,
+                color: COLORS.white,
                 ...FONTS.h3,
               }}
             >

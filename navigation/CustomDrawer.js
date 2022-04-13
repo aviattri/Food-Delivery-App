@@ -269,7 +269,6 @@ const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     selectedTab: state.tabReducer.selectedTab,
   };
