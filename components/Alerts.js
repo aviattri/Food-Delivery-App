@@ -10,4 +10,4 @@ const disabledAlert = () =>
     { text: "OK", onPress: () => console.log("OK Pressed") },
   ]);
 
-export default { disabledAlert };
+export default disabledAlert;
