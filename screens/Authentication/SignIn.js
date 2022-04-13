@@ -11,6 +11,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { utils } from "../../utils";
 import { AppContext } from "../../appContext/AppContextProvider";
+import disabledAlert from "../../components/Alerts";
 
 const SignIn = ({ navigation }) => {
   const { state, authContext, dispatch } = useContext(AppContext);
@@ -179,7 +180,7 @@ const SignIn = ({ navigation }) => {
             marginLeft: SIZES.radius,
             color: COLORS.white,
           }}
-          onPress={() => console.log("facebook")}
+          onPress={disabledAlert}
         />
         {/* Google Button */}
         <TextIconButton
@@ -199,7 +200,7 @@ const SignIn = ({ navigation }) => {
           labelStyle={{
             marginLeft: SIZES.radius,
           }}
-          onPress={() => console.log("Google")}
+          onPress={disabledAlert}
         />
       </View>
     </AuthLayout>

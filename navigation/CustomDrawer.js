@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import {
   createDrawerNavigator,
@@ -17,8 +17,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { connect } from "react-redux";
 import { setSelectedTab } from "../store/tab/tabActions";
+import { useContext } from "react";
+import { AppContext } from "../appContext/AppContextProvider";
 
 const Drawer = createDrawerNavigator();
+
 const CustomDrawerItem = ({ isFocused, onPress, label, icon }) => {
   return (
     <TouchableOpacity
@@ -45,6 +48,17 @@ const CustomDrawerItem = ({ isFocused, onPress, label, icon }) => {
 };
 
 const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
+  const { authContext } = useContext(AppContext);
+  const logOutAlert = () =>
+    Alert.alert("Attention", "Are you sure you want to logout?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => authContext.signOut() },
+      { cancelable: false },
+    ]);
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -218,6 +232,7 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
           <CustomDrawerItem
             label={constants.screens.logout}
             icon={icons.logout}
+            onPress={() => logOutAlert()}
           />
         </View>
       </View>

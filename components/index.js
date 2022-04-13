@@ -7,6 +7,7 @@ import TabButton from "./TabButton";
 import HorizontalFoodCard from "./HorizontalFoodCard";
 import Section from "./Section";
 import VerticalFoodCard from "./VerticalFoodCard";
+import * as Alerts from "./Alerts";
 export {
   TabButton,
   TextButton,
@@ -17,4 +18,5 @@ export {
   Section,
   HorizontalFoodCard,
   VerticalFoodCard,
+  Alerts,
 };

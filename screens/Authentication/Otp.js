@@ -1,10 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import AuthLayout from "./AuthLayout";
 import { COLORS, FONTS, SIZES } from "../../constants";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { TextButton } from "../../components";
+import { useContext } from "react";
+import { AppContext } from "../../appContext/AppContextProvider";
+
 const Otp = () => {
+  const { state, authContext, dispatch } = useContext(AppContext);
+
   const [timer, setTimer] = useState(60);
   useEffect(() => {
     let interval = setInterval(() => {
@@ -81,7 +86,15 @@ const Otp = () => {
             borderRadius: SIZES.radius,
             backgroundColor: COLORS.primary,
           }}
-          onPress={() => console.log("press")}
+          onPress={() =>
+            Alert.alert("Success", "Your account has been created", [
+              {
+                text: "OK",
+                onPress: () =>
+                  dispatch({ type: "SIGN_IN", token: "dummy-auth-token" }),
+              },
+            ])
+          }
         />
         <View
           style={{

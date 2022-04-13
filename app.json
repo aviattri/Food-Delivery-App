@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "FoodDilveryApp",
-    "slug": "FoodDilveryApp",
+    "name": "Food Delivery App",
+    "description":"An app that gets the best deals for your next meal!",
+    "slug": "FoodDeliveryApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/burger.png",
+    "icon": "./assets/images/splash/Splash.png",
     "splash": {
-      "image": "./assets/images/splash/ios/01.png",
+      "image": "./assets/images/splash/ExpoSplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/profile.png",
+        "foregroundImage": "./assets/icons/burger.png",
         "backgroundColor": "#FFFFFF"
       }
     },
