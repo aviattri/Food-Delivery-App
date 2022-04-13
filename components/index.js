@@ -8,6 +8,8 @@ import HorizontalFoodCard from "./HorizontalFoodCard";
 import Section from "./Section";
 import VerticalFoodCard from "./VerticalFoodCard";
 import * as Alerts from "./Alerts";
+import IconButton from "./IconButton";
+import TwoPointSlider from "./TwoPointSlider";
 export {
   TabButton,
   TextButton,
@@ -19,4 +21,6 @@ export {
   HorizontalFoodCard,
   VerticalFoodCard,
   Alerts,
+  IconButton,
+  TwoPointSlider,
 };

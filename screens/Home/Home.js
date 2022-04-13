@@ -12,6 +12,7 @@ import {
   VerticalFoodCard,
   Section,
 } from "../../components";
+import FilterModal from "./FilterModal";
 
 const Home = () => {
   const [selectedCatergoryId, setSelectedCatergoryId] = useState(1);
@@ -19,6 +20,7 @@ const Home = () => {
   const [menuList, setMenuList] = useState([]);
   const [recommend, setRecommend] = useState([]);
   const [popularFood, setPopularFood] = useState([]);
+  const [showFilterModal, setShowFilterModal] = useState(false);
 
   useEffect(() => {
     handleChangeCategory(selectedCatergoryId, selectedMenuType);
@@ -251,7 +253,7 @@ const Home = () => {
           placeholder="Search Food.."
         />
         {/* Filter Button */}
-        <TouchableOpacity onPress={() => ""}>
+        <TouchableOpacity onPress={() => setShowFilterModal(true)}>
           <Image
             style={{
               marginRight: SIZES.radius,
@@ -273,6 +275,13 @@ const Home = () => {
     >
       {/* Search */}
       {renderSearch()}
+      {/* Filter Modal */}
+      {showFilterModal && (
+        <FilterModal
+          isVisible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
+        />
+      )}
       {/* List */}
       <FlatList
         data={menuList}

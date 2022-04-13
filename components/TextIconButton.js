@@ -31,7 +31,7 @@ const TextIconButton = ({
       )}
       <Text style={{ ...FONTS.body3, ...labelStyle }}>{label}</Text>
       {iconPosition == "RIGHT" && (
-        <Images
+        <Image
           source={icon}
           resizeMode="contain"
           style={{ ...styles.image, ...iconStyle }}
