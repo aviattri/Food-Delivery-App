@@ -183,7 +183,9 @@ const Home = ({ navigation }) => {
                 width: 150,
               }}
               item={item}
-              onPress={() => console.log("horizontal food card")}
+              onPress={() =>
+                navigation.navigate("FoodDetail", { foodDetail: item })
+              }
             />
           )}
         />
