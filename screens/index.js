@@ -11,7 +11,7 @@ import Search from "./Search/Search";
 import Favourite from "./Favourite/Favourite";
 import Notification from "./Notification/Notification";
 import Cart from "./Cart/Cart";
-
+import FoodDetail from "./Food/FoodDetail";
 export {
   OnBoarding,
   Home,
@@ -24,4 +24,5 @@ export {
   Otp,
   ForgotPassword,
   AuthLayout,
+  FoodDetail,
 };

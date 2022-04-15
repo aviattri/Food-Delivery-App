@@ -14,6 +14,7 @@ const VerticalFoodCard = ({ containerStyle, item, onPress }) => {
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
       }}
+      onPress={onPress}
     >
       {/* Calories and Favorite Section */}
       <View

@@ -10,6 +10,8 @@ import {
   ForgotPassword,
   Otp,
   Home,
+  FoodDetail,
+  Cart,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -43,13 +45,29 @@ const AppNavigation = () => {
           </>
         ) : (
           // User is signed in
-          <Stack.Screen
-            screenOptions={{
-              headerShown: false,
-            }}
-            name="Home"
-            component={CustomDrawer}
-          />
+          <>
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="Home"
+              component={CustomDrawer}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="FoodDetail"
+              component={FoodDetail}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="Cart"
+              component={Cart}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

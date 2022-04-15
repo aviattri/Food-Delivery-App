@@ -10,6 +10,7 @@ import VerticalFoodCard from "./VerticalFoodCard";
 import * as Alerts from "./Alerts";
 import IconButton from "./IconButton";
 import TwoPointSlider from "./TwoPointSlider";
+import CartQuantityButton from "./CartQuantityButton";
 export {
   TabButton,
   TextButton,
@@ -23,4 +24,5 @@ export {
   Alerts,
   IconButton,
   TwoPointSlider,
+  CartQuantityButton,
 };

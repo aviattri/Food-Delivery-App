@@ -14,7 +14,7 @@ import {
 } from "../../components";
 import FilterModal from "./FilterModal";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [selectedCatergoryId, setSelectedCatergoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
@@ -150,7 +150,9 @@ const Home = () => {
                 alignItems: "center",
               }}
               item={item}
-              onPress={() => console.log("vertical food card")}
+              onPress={() =>
+                navigation.navigate("FoodDetail", { foodDetail: item })
+              }
             />
           )}
         />
@@ -317,7 +319,9 @@ const Home = () => {
                 width: 100,
               }}
               item={item}
-              onPress={() => console.log("horizontal food card")}
+              onPress={() =>
+                navigation.navigate("FoodDetail", { foodDetail: item })
+              }
             />
           );
         }}

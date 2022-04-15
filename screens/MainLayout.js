@@ -24,7 +24,7 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { useEffect } from "react";
 import { useRef } from "react";
 
-const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
+const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
   //FlatList Ref
   const flatListRef = useRef();
 
@@ -250,7 +250,9 @@ const MainLayout = ({ props, navigation, selectedTab, setSelectedTab }) => {
                   // backgroundColor: COLORS.black,
                 }}
               >
-                {item.label == constants.screens.home && <Home />}
+                {item.label == constants.screens.home && (
+                  <Home navigation={navigation} />
+                )}
                 {item.label == constants.screens.search && <Search />}
                 {item.label == constants.screens.cart && <Cart />}
                 {item.label == constants.screens.favourite && <Favourite />}

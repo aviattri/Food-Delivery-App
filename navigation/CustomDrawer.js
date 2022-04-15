@@ -240,7 +240,7 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
   );
 };
 
-const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
+const CustomDrawer = ({ navgiation, selectedTab, setSelectedTab }) => {
   console.log(selectedTab);
   return (
     <View

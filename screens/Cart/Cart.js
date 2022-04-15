@@ -1,7 +1,8 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
   return (
     <View
       style={{
@@ -10,7 +11,9 @@ const Cart = () => {
         justifyContent: "center",
       }}
     >
-      <Text>Cart</Text>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text>Cart</Text>
+      </TouchableOpacity>
     </View>
   );
 };

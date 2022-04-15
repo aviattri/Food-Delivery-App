@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS, FONTS, icons, SIZES } from "../constants";
 
-const HorizontalFoodCard = ({ containerStyle, item, imageStyle }) => {
+const HorizontalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
   return (
     <TouchableOpacity
       style={{
@@ -12,6 +12,7 @@ const HorizontalFoodCard = ({ containerStyle, item, imageStyle }) => {
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
       }}
+      onPress={onPress}
     >
       {/* Image */}
       <Image source={item.image} style={imageStyle} />
@@ -24,7 +25,10 @@ const HorizontalFoodCard = ({ containerStyle, item, imageStyle }) => {
         {/* Name  */}
         <Text style={{ ...FONTS.h3, fontSize: 17 }}>{item.name}</Text>
         {/* Descritiom */}
-        <Text style={{ color: COLORS.darkGray2, ...FONTS.body4 }}>
+        <Text
+          numberOfLines={1}
+          style={{ flexShrink: 1, color: COLORS.darkGray2, ...FONTS.body4 }}
+        >
           {item.description}
         </Text>
         {/* Price */}
