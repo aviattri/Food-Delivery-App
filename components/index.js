@@ -14,6 +14,7 @@ import CartQuantityButton from "./CartQuantityButton";
 import LineDivider from "./LineDivider";
 import Ratings from "./Ratings";
 import StepperInput from "./StepperInput";
+import CardItem from "./CardItem";
 export {
   TabButton,
   TextButton,
@@ -31,4 +32,5 @@ export {
   LineDivider,
   Ratings,
   StepperInput,
+  CardItem,
 };

@@ -14,6 +14,8 @@ import {
   Cart,
   MyCard,
   MyCart,
+  AddCard,
+  Checkout,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -82,6 +84,20 @@ const AppNavigation = () => {
               }}
               name="MyCard"
               component={MyCard}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="AddCard"
+              component={AddCard}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="Checkout"
+              component={Checkout}
             />
           </>
         )}

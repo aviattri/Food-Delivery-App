@@ -31,8 +31,12 @@ const clock = require("../assets/icons/clock.png");
 const minus = require("../assets/icons/minus.png");
 const plus = require("../assets/icons/plus.png");
 const delete_icon = require("../assets/icons/delete.png");
+const check_off = require("../assets/icons/check_off.png");
+const check_on = require("../assets/icons/check_on.png");
 
 export default {
+  check_off,
+  check_on,
   clock,
   back,
   coupon,

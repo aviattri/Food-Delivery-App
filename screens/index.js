@@ -14,6 +14,8 @@ import MyCart from "./Cart/MyCart";
 import Cart from "./Cart/Cart";
 import FoodDetail from "./Food/FoodDetail";
 import MyCard from "./MyCard/MyCard";
+import AddCard from "./MyCard/AddCard";
+import Checkout from "./Checkout/Checkout";
 export {
   OnBoarding,
   Home,
@@ -29,4 +31,6 @@ export {
   FoodDetail,
   MyCard,
   MyCart,
+  AddCard,
+  Checkout,
 };

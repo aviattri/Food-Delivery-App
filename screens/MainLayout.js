@@ -254,7 +254,9 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
                   <Home navigation={navigation} />
                 )}
                 {item.label == constants.screens.search && <Search />}
-                {item.label == constants.screens.cart && <Cart />}
+                {item.label == constants.screens.cart && (
+                  <Cart navigation={navigation} />
+                )}
                 {item.label == constants.screens.favourite && <Favourite />}
                 {item.label == constants.screens.notification && (
                   <Notification />
