@@ -8,6 +8,7 @@ import {
   StepperInput,
 } from "../../components";
 import { SwipeListView } from "react-native-swipe-list-view";
+import FooterTotal from "../../components/FooterTotal";
 
 const Cart = ({ navigation }) => {
   const [myCartList, setMyCartList] = useState(dummyData.myCart);
@@ -125,6 +126,26 @@ const Cart = ({ navigation }) => {
       />
     );
   }
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          position: "absolute",
+          bottom: 0,
+          height: 300,
+          marginBottom: SIZES.padding * 2,
+          width: "100%",
+        }}
+      >
+        <FooterTotal
+          subTotal={41}
+          shippingFess={0}
+          total={41}
+          onPress={() => console.log("")}
+        />
+      </View>
+    );
+  }
   return (
     <View
       style={{
@@ -137,6 +158,7 @@ const Cart = ({ navigation }) => {
       {/* Cart List */}
       {renderCartList()}
       {/* Footer */}
+      {renderFooter()}
     </View>
   );
 };
