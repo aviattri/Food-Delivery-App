@@ -18,17 +18,20 @@ import {
   TextButton,
   TextIconButton,
 } from "../../components";
+
+import { connect } from "react-redux";
+import { setCartItem } from "../../store/cart/cartActions";
+
 import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
-import { color } from "react-native-reanimated";
 
-const FoodDetail = ({ navigation, route }) => {
+const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
   const [orderTag, setOrderTag] = useState("Ratings");
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
 
   const { foodDetail } = route.params;
-  console.log(foodDetail);
+  // console.log(foodDetail);
 
   function renderHeader() {
     return (
@@ -342,7 +345,11 @@ const FoodDetail = ({ navigation, route }) => {
             borderRadius: SIZES.radius,
             backgroundColor: COLORS.primary,
           }}
-          onPress={() => navigation.navigate("Cart")}
+          onPress={() => {
+            //dispatch
+            setCartItem({ ...foodDetail, qty: stepperValue });
+            navigation.navigate("Cart");
+          }}
           disabled={false}
         />
       </View>
@@ -370,4 +377,17 @@ const FoodDetail = ({ navigation, route }) => {
   );
 };
 
-export default FoodDetail;
+function mapStateToProps(state) {
+  return {
+    myCart: state.cartReducer.cart,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setCartItem: (foodItem) => {
+      return dispatch(setCartItem(foodItem));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodDetail);

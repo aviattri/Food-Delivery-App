@@ -12,6 +12,7 @@ import Favourite from "./Favourite/Favourite";
 import Notification from "./Notification/Notification";
 import Cart from "./Cart/Cart";
 import FoodDetail from "./Food/FoodDetail";
+import MyCard from "./MyCard/MyCard";
 export {
   OnBoarding,
   Home,
@@ -25,4 +26,5 @@ export {
   ForgotPassword,
   AuthLayout,
   FoodDetail,
+  MyCard,
 };

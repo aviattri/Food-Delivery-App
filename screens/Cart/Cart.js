@@ -7,12 +7,15 @@ import {
   IconButton,
   StepperInput,
 } from "../../components";
+
+import { connect } from "react-redux";
+import { setCartItem } from "../../store/cart/cartActions";
+
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
 
-const Cart = ({ navigation }) => {
-  const [myCartList, setMyCartList] = useState(dummyData.myCart);
-
+const Cart = ({ navigation, myCart }) => {
+  const [myCartList, setMyCartList] = useState(myCart);
   const updateQuanityHandler = (newQty, id) => {
     const newMyCartList = myCartList.map((cl) =>
       cl.id === id ? { ...cl, qty: newQty } : cl
@@ -133,7 +136,7 @@ const Cart = ({ navigation }) => {
           position: "absolute",
           bottom: 0,
           height: 300,
-          marginBottom: SIZES.padding * 2,
+          marginBottom: SIZES.radius,
           width: "100%",
         }}
       >
@@ -141,7 +144,7 @@ const Cart = ({ navigation }) => {
           subTotal={41}
           shippingFess={0}
           total={41}
-          onPress={() => console.log("")}
+          onPress={() => navigation.navigate("MyCard")}
         />
       </View>
     );
@@ -190,4 +193,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
 });
-export default Cart;
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    myCart: state.cartReducer.cart,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setCartItem: (foodItem) => {
+      return dispatch(setCartItem(foodItem));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

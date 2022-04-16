@@ -12,6 +12,7 @@ import {
   Home,
   FoodDetail,
   Cart,
+  MyCard,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -20,7 +21,7 @@ const Stack = createStackNavigator();
 
 const AppNavigation = () => {
   const { state } = useContext(AppContext);
-  console.log(state);
+  // console.log(state);
 
   return (
     <NavigationContainer>
@@ -66,6 +67,13 @@ const AppNavigation = () => {
               }}
               name="Cart"
               component={Cart}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MyCard"
+              component={MyCard}
             />
           </>
         )}

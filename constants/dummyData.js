@@ -145,14 +145,18 @@ const myCart = [
     ...hamburger,
     qty: 1,
   },
-  {
-    ...hotTacos,
-    qty: 1,
-  },
-  {
-    ...vegBiryani,
-    qty: 1,
-  },
+  // {
+  //   ...hotTacos,
+  //   qty: 1,
+  // },
+  // {
+  //   ...vegBiryani,
+  //   qty: 1,
+  // },
+  // {
+  //   ...wrapSandwich,
+  //   qty: 1,
+  // },
 ];
 
 const myCards = [
