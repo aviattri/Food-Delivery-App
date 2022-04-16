@@ -1,10 +1,20 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
-import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
+import {
+  COLORS,
+  dummyData,
+  FONTS,
+  icons,
+  images,
+  SIZES,
+} from "../../constants";
 import {
   CartQuantityButton,
   Header,
   IconButton,
+  LineDivider,
+  Ratings,
+  StepperInput,
   TextButton,
   TextIconButton,
 } from "../../components";
@@ -15,6 +25,7 @@ import { color } from "react-native-reanimated";
 const FoodDetail = ({ navigation, route }) => {
   const [orderTag, setOrderTag] = useState("Ratings");
   const [foodSize, setFoodSize] = useState("");
+  const [stepperValue, setStepperValue] = useState(0);
 
   const { foodDetail } = route.params;
   console.log(foodDetail);
@@ -250,6 +261,93 @@ const FoodDetail = ({ navigation, route }) => {
       </View>
     );
   }
+  function renderRestuarant() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          marginVertical: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+        }}
+      >
+        {/* Restuarant Image */}
+        <Image
+          resizeMode="contain"
+          source={images.hot_delivery}
+          style={{ width: 50, height: 50 }}
+        />
+        {/* Restuarant info */}
+        <View style={{ flexDirection: "column", marginLeft: SIZES.radius }}>
+          <Text style={{ ...FONTS.h3 }}>Totya Food</Text>
+          <Text
+            style={{
+              color: COLORS.gray,
+              ...FONTS.body3,
+            }}
+          >
+            600m away from you
+          </Text>
+        </View>
+        {/* Restuarant Rating */}
+        <Ratings
+          rating={3}
+          iconStyle={{
+            marginLeft: 3,
+          }}
+          containerStyle={{
+            marginLeft: SIZES.padding,
+            alignItems: "center",
+          }}
+        />
+      </View>
+    );
+  }
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          height: 120,
+          paddingHorizontal: SIZES.padding,
+          paddingBottom: SIZES.radius,
+        }}
+      >
+        {/* Stepper Button */}
+        <StepperInput
+          containerStyle={{}}
+          value={stepperValue}
+          onAdd={() =>
+            setStepperValue(stepperValue < 20 ? stepperValue + 1 : 20)
+          }
+          onMinus={() =>
+            setStepperValue(stepperValue > 0 ? stepperValue - 1 : 0)
+          }
+        />
+        {/* Buy Button */}
+        <TextButton
+          label={`Buy Now`}
+          label2={15.99}
+          labelStyle={{
+            color: COLORS.white,
+            ...FONTS.h3,
+          }}
+          buttonContainerStyle={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginLeft: SIZES.radius,
+            paddingHorizontal: SIZES.padding,
+            height: 60,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.primary,
+          }}
+          onPress={() => navigation.navigate("Cart")}
+          disabled={false}
+        />
+      </View>
+    );
+  }
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       {/* Header */}
@@ -258,10 +356,16 @@ const FoodDetail = ({ navigation, route }) => {
       <ScrollView>
         {/* Food DETAILS */}
         {renderDetail()}
+        {/* LineDivider */}
+        <LineDivider />
         {/* Restaurant */}
+        {renderRestuarant()}
+        {/* LineDivider */}
+        <LineDivider />
+        {/* Render Footer */}
+        {renderFooter()}
       </ScrollView>
       {/* Footer */}
-      <Text>Food</Text>
     </View>
   );
 };

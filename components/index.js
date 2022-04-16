@@ -11,6 +11,9 @@ import * as Alerts from "./Alerts";
 import IconButton from "./IconButton";
 import TwoPointSlider from "./TwoPointSlider";
 import CartQuantityButton from "./CartQuantityButton";
+import LineDivider from "./LineDivider";
+import Ratings from "./Ratings";
+import StepperInput from "./StepperInput";
 export {
   TabButton,
   TextButton,
@@ -25,4 +28,7 @@ export {
   IconButton,
   TwoPointSlider,
   CartQuantityButton,
+  LineDivider,
+  Ratings,
+  StepperInput,
 };

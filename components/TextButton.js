@@ -4,6 +4,7 @@ import { COLORS, FONTS, SIZES } from "../constants";
 
 const TextButton = ({
   label,
+  label2,
   labelStyle,
   buttonContainerStyle,
   onPress,
@@ -29,6 +30,17 @@ const TextButton = ({
       >
         {label}
       </Text>
+      {label2 && (
+        <Text
+          style={{
+            color: COLORS.white,
+            ...FONTS.h3,
+            ...labelStyle,
+          }}
+        >
+          {label2}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

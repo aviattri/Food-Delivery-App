@@ -28,6 +28,8 @@ const help = require("../assets/icons/help.png");
 const back = require("../assets/icons/back.png");
 const dollar = require("../assets/icons/dollar.png");
 const clock = require("../assets/icons/clock.png");
+const minus = require("../assets/icons/minus.png");
+const plus = require("../assets/icons/plus.png");
 
 export default {
   clock,
@@ -60,4 +62,6 @@ export default {
   wallet,
   help,
   dollar,
+  minus,
+  plus,
 };
