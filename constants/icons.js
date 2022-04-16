@@ -30,6 +30,7 @@ const dollar = require("../assets/icons/dollar.png");
 const clock = require("../assets/icons/clock.png");
 const minus = require("../assets/icons/minus.png");
 const plus = require("../assets/icons/plus.png");
+const delete_icon = require("../assets/icons/delete.png");
 
 export default {
   clock,
@@ -64,4 +65,5 @@ export default {
   dollar,
   minus,
   plus,
+  delete_icon,
 };
