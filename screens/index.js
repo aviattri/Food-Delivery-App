@@ -10,6 +10,7 @@ import Home from "./Home/Home";
 import Search from "./Search/Search";
 import Favourite from "./Favourite/Favourite";
 import Notification from "./Notification/Notification";
+import MyCart from "./Cart/MyCart";
 import Cart from "./Cart/Cart";
 import FoodDetail from "./Food/FoodDetail";
 import MyCard from "./MyCard/MyCard";
@@ -27,4 +28,5 @@ export {
   AuthLayout,
   FoodDetail,
   MyCard,
+  MyCart,
 };

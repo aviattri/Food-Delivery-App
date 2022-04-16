@@ -58,7 +58,12 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
             onPress={() => navigation.goBack()}
           />
         }
-        rightComponent={<CartQuantityButton />}
+        rightComponent={
+          <CartQuantityButton
+            quantity={myCart.length ?? 0}
+            onPress={() => navigation.navigate("MyCart")}
+          />
+        }
       />
     );
   }
@@ -348,7 +353,7 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
           onPress={() => {
             //dispatch
             setCartItem({ ...foodDetail, qty: stepperValue });
-            navigation.navigate("Cart");
+            navigation.navigate("MyCart");
           }}
           disabled={false}
         />

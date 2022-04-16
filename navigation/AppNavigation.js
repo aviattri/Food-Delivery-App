@@ -13,6 +13,7 @@ import {
   FoodDetail,
   Cart,
   MyCard,
+  MyCart,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -60,6 +61,13 @@ const AppNavigation = () => {
               }}
               name="FoodDetail"
               component={FoodDetail}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MyCart"
+              component={MyCart}
             />
             <Stack.Screen
               screenOptions={{

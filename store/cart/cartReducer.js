@@ -17,7 +17,7 @@ const CartReducer = (state = intialState, action) => {
           item.name === action.payload.item.name
             ? {
                 ...item,
-                qty: item.qty + action.payload.item.qty,
+                qty: action.payload.item.qty,
               }
             : item
         );

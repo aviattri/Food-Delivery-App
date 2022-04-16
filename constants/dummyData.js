@@ -108,36 +108,46 @@ const wrapSandwich = {
   image: require("../assets/dummyData/wrap_sandwich.png"),
 };
 
+const indian = {
+  id: 5,
+  name: "Butter Chicken",
+  description: "Creamy Butter Chicken",
+  categories: [1, 3],
+  price: 15.99,
+  calories: 300,
+  isFavourite: true,
+  image: require("../assets/dummyData/butter_chicken.png"),
+};
 const menu = [
   {
     id: 1,
     name: "Featured",
-    list: [hamburger, hotTacos, vegBiryani],
+    list: [hamburger, hotTacos, vegBiryani, indian],
   },
   {
     id: 2,
     name: "Nearby you",
-    list: [hamburger, vegBiryani, wrapSandwich],
+    list: [hamburger, vegBiryani, wrapSandwich, indian],
   },
   {
     id: 3,
     name: "Popular",
-    list: [hamburger, hotTacos, wrapSandwich],
+    list: [hamburger, hotTacos, wrapSandwich, indian],
   },
   {
     id: 4,
     name: "Newest",
-    list: [hamburger, hotTacos, vegBiryani],
+    list: [hamburger, hotTacos, vegBiryani, indian],
   },
   {
     id: 5,
     name: "Trending",
-    list: [hamburger, vegBiryani, wrapSandwich],
+    list: [hamburger, vegBiryani, wrapSandwich, indian],
   },
   {
     id: 6,
     name: "Recommended",
-    list: [hamburger, hotTacos, wrapSandwich],
+    list: [hamburger, hotTacos, wrapSandwich, indian],
   },
 ];
 const myCart = [

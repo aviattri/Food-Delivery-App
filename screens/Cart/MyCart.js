@@ -1,8 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
-import LottieView from "lottie-react-native";
-
 import {
   CartQuantityButton,
   Header,
@@ -16,9 +14,7 @@ import { setCartItem } from "../../store/cart/cartActions";
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
 
-import { useEffect } from "react";
-
-const Cart = ({ navigation, myCart }) => {
+const MyCart = ({ navigation, myCart }) => {
   const [myCartList, setMyCartList] = useState(myCart);
   const updateQuanityHandler = (newQty, id) => {
     const newMyCartList = myCartList.map((cl) =>
@@ -34,10 +30,35 @@ const Cart = ({ navigation, myCart }) => {
     setMyCartList(newcartList);
   };
 
-  useEffect(() => {
-    setMyCartList(myCart);
-  }, [myCart]);
-
+  function renderHeader() {
+    return (
+      <Header
+        containerStyle={{
+          height: 40,
+          marginHorizontal: SIZES.padding,
+          marginTop: 40,
+        }}
+        title="MY CART"
+        leftComponent={
+          <IconButton
+            containerStyle={{
+              width: 40,
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center",
+              borderWidth: 1,
+              borderRadius: SIZES.radius,
+              borderColor: COLORS.gray2,
+            }}
+            icon={icons.back}
+            iconStyle={{ width: 20, height: 20, tintColor: COLORS.gray2 }}
+            onPress={() => navigation.goBack()}
+          />
+        }
+        rightComponent={<CartQuantityButton quantity={myCart.length ?? 0} />}
+      />
+    );
+  }
   function renderCartList() {
     return (
       <SwipeListView
@@ -105,7 +126,6 @@ const Cart = ({ navigation, myCart }) => {
             onPress={() => removeFoodItem(data.item.id)}
           />
         )}
-        ListFooterComponent={<View style={{ height: 200 }}></View>}
       />
     );
   }
@@ -113,7 +133,10 @@ const Cart = ({ navigation, myCart }) => {
     return (
       <View
         style={{
-          height: "60%",
+          position: "absolute",
+          bottom: 0,
+          height: 300,
+          marginBottom: SIZES.radius,
           width: "100%",
         }}
       >
@@ -126,36 +149,6 @@ const Cart = ({ navigation, myCart }) => {
       </View>
     );
   }
-
-  if (myCart.length == 0) {
-    //cart is empty
-    return (
-      <>
-        <View
-          style={{
-            flex: 1,
-            marginTop: SIZES.padding,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ color: COLORS.black, ...FONTS.body2 }}>
-            Your Cart is Empty
-          </Text>
-          <Text style={{ color: COLORS.gray, ...FONTS.body3 }}>
-            Order exciting food now!
-          </Text>
-        </View>
-        <LottieView
-          resizeMode="contain"
-          style={{ flex: 1, justifyContent: "flex-start", height: 100 }}
-          autoPlay
-          source={require("../../assets/animations/order_food.json")}
-        />
-      </>
-    );
-  }
-
   return (
     <View
       style={{
@@ -163,6 +156,8 @@ const Cart = ({ navigation, myCart }) => {
         backgroundColor: COLORS.white,
       }}
     >
+      {/* Header */}
+      {renderHeader()}
       {/* Cart List */}
       {renderCartList()}
       {/* Footer */}
@@ -213,4 +208,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(MyCart);
