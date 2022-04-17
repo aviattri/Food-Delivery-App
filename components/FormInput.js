@@ -5,6 +5,7 @@ import { TextInput } from "react-native-gesture-handler";
 
 const FormInput = ({
   containerStyle,
+  inputContainerStyle,
   label,
   value,
   placeHolder,
@@ -35,6 +36,7 @@ const FormInput = ({
           marginTop: SIZES.base,
           borderRadius: SIZES.radius,
           backgroundColor: COLORS.lightGray2,
+          ...inputContainerStyle,
         }}
       >
         {prependComponent}

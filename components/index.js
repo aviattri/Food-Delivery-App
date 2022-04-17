@@ -17,7 +17,7 @@ import StepperInput from "./StepperInput";
 import CardItem from "./CardItem";
 import FormInputCheck from "./FormInputCheck";
 import RadioButton from "./RadioButton";
-
+import FooterTotal from "./FooterTotal";
 export {
   TabButton,
   TextButton,
@@ -38,4 +38,5 @@ export {
   CardItem,
   FormInputCheck,
   RadioButton,
+  FooterTotal,
 };

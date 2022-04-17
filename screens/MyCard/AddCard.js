@@ -253,7 +253,9 @@ const AddCard = ({ navigation, route }) => {
             backgroundColor: !isEnabledCard() ? COLORS.gray : COLORS.primary,
           }}
           disabled={!isEnabledCard()}
-          onPress={() => navigation.navigate("Checkout")}
+          onPress={() =>
+            navigation.navigate("Checkout", { cardDetails: selectedCard })
+          }
         />
       </View>
     );
