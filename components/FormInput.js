@@ -16,6 +16,7 @@ const FormInput = ({
   autoCompleteType = "off",
   autoCaptalize = "none",
   errorMsg = "",
+  maxLength,
 }) => {
   return (
     <View style={{ ...containerStyle }}>
@@ -45,6 +46,7 @@ const FormInput = ({
           autoCompleteType={autoCompleteType}
           autoCapitalize={autoCaptalize}
           onChangeText={(text) => onChange(text)}
+          maxLength={maxLength}
         />
         {appendComponent}
       </View>

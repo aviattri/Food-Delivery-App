@@ -15,6 +15,9 @@ import LineDivider from "./LineDivider";
 import Ratings from "./Ratings";
 import StepperInput from "./StepperInput";
 import CardItem from "./CardItem";
+import FormInputCheck from "./FormInputCheck";
+import RadioButton from "./RadioButton";
+
 export {
   TabButton,
   TextButton,
@@ -33,4 +36,6 @@ export {
   Ratings,
   StepperInput,
   CardItem,
+  FormInputCheck,
+  RadioButton,
 };

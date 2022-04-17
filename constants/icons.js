@@ -33,6 +33,7 @@ const plus = require("../assets/icons/plus.png");
 const delete_icon = require("../assets/icons/delete.png");
 const check_off = require("../assets/icons/check_off.png");
 const check_on = require("../assets/icons/check_on.png");
+const cancel = require("../assets/icons/cancel.png");
 
 export default {
   check_off,
@@ -70,4 +71,5 @@ export default {
   minus,
   plus,
   delete_icon,
+  cancel,
 };

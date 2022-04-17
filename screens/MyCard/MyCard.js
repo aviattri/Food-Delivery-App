@@ -105,7 +105,7 @@ const MyCard = ({ navigation }) => {
           disabled={selectedCard == null}
           onPress={() =>
             selectedCard?.key == "NewCard"
-              ? navigation.navigate("AddCard")
+              ? navigation.navigate("AddCard", { cardDetails: selectedCard })
               : navigation.navigate("Checkout")
           }
         />
