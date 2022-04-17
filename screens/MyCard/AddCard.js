@@ -25,6 +25,7 @@ const AddCard = ({ navigation, route }) => {
   const [cvv, setCvv] = useState("");
   const [cvvError, setCvvError] = useState("");
   const [isRemember, setIsRemember] = useState(false);
+
   function isEnabledCard() {
     return (
       cardNumber != "" &&
@@ -37,10 +38,12 @@ const AddCard = ({ navigation, route }) => {
       expiryDateError == ""
     );
   }
+
   useEffect(() => {
     const { cardDetails } = route.params;
     setSelectedCard(cardDetails);
   }, []);
+
   function renderHeader() {
     return (
       <Header
@@ -131,18 +134,18 @@ const AddCard = ({ navigation, route }) => {
           label="Card Number"
           keyboardType="number-pad"
           autoCompleteType="number"
-          maxLength={16}
+          maxLength={19}
           value={cardNumber}
           onChange={(value) =>
             // validate email
             {
+              utils.validateInput(value, 19, setCardNumberError);
               setCardNumber(
                 value
                   .replace(/\s/g, "")
                   .replace(/(\d{4})/g, "$1 ")
                   .trim()
               );
-              utils.validateInput(value, 16, setCardNumberError);
             }
           }
           errorMsg={cardNumberError}
@@ -183,6 +186,7 @@ const AddCard = ({ navigation, route }) => {
             label="Expiry Date"
             placeHolder={"MM/YY"}
             maxLength={5}
+            value={expiryDate}
             containerStyle={{
               flex: 1,
             }}
@@ -246,7 +250,7 @@ const AddCard = ({ navigation, route }) => {
           buttonContainerStyle={{
             height: 60,
             borderRadius: SIZES.radius,
-            backgroundColor: isEnabledCard() ? COLORS.gray : COLORS.primary,
+            backgroundColor: !isEnabledCard() ? COLORS.gray : COLORS.primary,
           }}
           disabled={!isEnabledCard()}
           onPress={() => navigation.navigate("Checkout")}
