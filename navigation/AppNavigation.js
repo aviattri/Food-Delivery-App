@@ -18,6 +18,7 @@ import {
   Checkout,
   Success,
   DeliveryStatus,
+  MapView,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -115,6 +116,14 @@ const AppNavigation = () => {
               }}
               name="DeliveryStatus"
               component={DeliveryStatus}
+              options={{ gestureEnabled: false }}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MapView"
+              component={MapView}
             />
           </>
         )}
