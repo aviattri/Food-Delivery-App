@@ -38,8 +38,10 @@ const location1 = require("../assets/icons/location1.png");
 const check_circle = require("../assets/icons/check_circle.png");
 const dotted_line = require("../assets/icons/dotted_line.png");
 const map = require("../assets/icons/map.png");
+const call = require("../assets/icons/call.png");
 
 export default {
+  call,
   check_off,
   check_on,
   clock,

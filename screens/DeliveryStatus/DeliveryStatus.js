@@ -237,7 +237,7 @@ const DeliveryStatus = ({ navigation }) => {
               }}
               onPress={() => {
                 //dispatch
-                navigation.navigate("MapView");
+                navigation.navigate("Map");
               }}
             />
           </View>

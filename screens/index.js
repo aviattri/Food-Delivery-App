@@ -18,7 +18,7 @@ import AddCard from "./MyCard/AddCard";
 import Checkout from "./Checkout/Checkout";
 import Success from "./OrderSuccess/Success";
 import DeliveryStatus from "./DeliveryStatus/DeliveryStatus";
-import MapView from "./MapView/MapView";
+import Map from "./Map/Map";
 
 export {
   OnBoarding,
@@ -39,5 +39,5 @@ export {
   Checkout,
   Success,
   DeliveryStatus,
-  MapView,
+  Map,
 };

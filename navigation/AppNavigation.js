@@ -18,7 +18,7 @@ import {
   Checkout,
   Success,
   DeliveryStatus,
-  MapView,
+  Map,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -122,8 +122,8 @@ const AppNavigation = () => {
               screenOptions={{
                 headerShown: false,
               }}
-              name="MapView"
-              component={MapView}
+              name="Map"
+              component={Map}
             />
           </>
         )}
