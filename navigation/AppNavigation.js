@@ -16,6 +16,8 @@ import {
   MyCart,
   AddCard,
   Checkout,
+  Success,
+  DeliveryStatus,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -98,6 +100,21 @@ const AppNavigation = () => {
               }}
               name="Checkout"
               component={Checkout}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="Success"
+              component={Success}
+              options={{ gestureEnabled: false }}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="DeliveryStatus"
+              component={DeliveryStatus}
             />
           </>
         )}

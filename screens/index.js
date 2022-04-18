@@ -16,6 +16,8 @@ import FoodDetail from "./Food/FoodDetail";
 import MyCard from "./MyCard/MyCard";
 import AddCard from "./MyCard/AddCard";
 import Checkout from "./Checkout/Checkout";
+import Success from "./OrderSuccess/Success";
+import DeliveryStatus from "./DeliveryStatus/DeliveryStatus";
 export {
   OnBoarding,
   Home,
@@ -33,4 +35,6 @@ export {
   MyCart,
   AddCard,
   Checkout,
+  Success,
+  DeliveryStatus,
 };

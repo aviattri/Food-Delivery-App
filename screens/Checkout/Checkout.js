@@ -185,7 +185,7 @@ const Checkout = ({ navigation, route }) => {
         subTotal={41}
         shippingFess={0}
         total={41}
-        onPress={() => navigation.navigate("MyCard")}
+        onPress={() => navigation.navigate("Success")}
       />
     </View>
   );
