@@ -70,7 +70,7 @@ const hamburger = {
   categories: [1, 2],
   price: 15,
   calories: 78,
-  isFavourite: true,
+  isFavourite: false,
   image: require("../assets/dummyData/hamburger.png"),
 };
 
@@ -93,7 +93,7 @@ const vegBiryani = {
   categories: [1, 2, 3],
   price: 10.99,
   calories: 78,
-  isFavourite: true,
+  isFavourite: false,
   image: require("../assets/dummyData/veg_biryani.png"),
 };
 
@@ -104,7 +104,7 @@ const wrapSandwich = {
   categories: [1, 2],
   price: 10.99,
   calories: 78,
-  isFavourite: true,
+  isFavourite: false,
   image: require("../assets/dummyData/wrap_sandwich.png"),
 };
 
@@ -115,7 +115,7 @@ const indian = {
   categories: [1, 3],
   price: 15.99,
   calories: 300,
-  isFavourite: true,
+  isFavourite: false,
   image: require("../assets/dummyData/butter_chicken.png"),
 };
 

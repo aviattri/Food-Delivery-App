@@ -21,17 +21,32 @@ import {
 
 import { connect } from "react-redux";
 import { setCartItem } from "../../store/cart/cartActions";
+import { setFavouriteList } from "../../store/favourites/favouriteActions";
 
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
+import { useEffect } from "react";
 
-const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
+const FoodDetail = ({
+  navigation,
+  route,
+  myCart,
+  setCartItem,
+  favourites,
+  setFavouriteList,
+}) => {
   const [orderTag, setOrderTag] = useState("Ratings");
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
-
+  const [favourite, setFavourite] = useState(false);
   const { foodDetail } = route.params;
   // console.log(foodDetail);
+
+  useEffect(() => {
+    if (favourites.find((item, index) => item.name == foodDetail.name)) {
+      setFavourite(true);
+    }
+  }, [favourites]);
 
   function renderHeader() {
     return (
@@ -103,16 +118,16 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
               </Text>
             </View>
             {/* Favourite */}
-            <Image
-              source={icons.love}
-              style={{
-                width: 20,
-                height: 20,
-                tintColor: foodDetail.isFavourite
-                  ? COLORS.primary
-                  : COLORS.gray,
-              }}
-            />
+            <TouchableOpacity onPress={() => setFavouriteList(foodDetail)}>
+              <Image
+                source={icons.love}
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: favourite ? COLORS.primary : COLORS.gray,
+                }}
+              />
+            </TouchableOpacity>
           </View>
           {/* Food Image */}
           <Image
@@ -387,14 +402,19 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state.favouriteReducer);
   return {
     myCart: state.cartReducer.cart,
+    favourites: state.favouriteReducer.favourites,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     setCartItem: (foodItem) => {
       return dispatch(setCartItem(foodItem));
+    },
+    setFavouriteList: (foodItem) => {
+      return dispatch(setFavouriteList(foodItem));
     },
   };
 }
