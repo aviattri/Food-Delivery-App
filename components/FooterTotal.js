@@ -61,7 +61,7 @@ const FooterTotal = ({ subTotal, shippingFess, total, onPress }) => {
           }}
         >
           <Text style={{ ...FONTS.h2 }}>Total:</Text>
-          <Text style={{ ...FONTS.h2 }}>{`$${total}`}</Text>
+          <Text style={{ ...FONTS.h2 }}>{`$${total.toFixed(2)}`}</Text>
         </View>
         {/* PayButton */}
         <TextButton

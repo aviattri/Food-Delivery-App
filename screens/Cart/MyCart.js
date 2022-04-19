@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import {
@@ -9,13 +9,19 @@ import {
 } from "../../components";
 
 import { connect } from "react-redux";
-import { setCartItem } from "../../store/cart/cartActions";
+import { setCartItem, setUpdateCart } from "../../store/cart/cartActions";
 
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
 import { useEffect } from "react";
 
-const MyCart = ({ navigation, myCart, products, setCartItem }) => {
+const MyCart = ({
+  navigation,
+  myCart,
+  products,
+  setCartItem,
+  setUpdateCart,
+}) => {
   const [myCartList, setMyCartList] = useState(myCart);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
@@ -40,13 +46,21 @@ const MyCart = ({ navigation, myCart, products, setCartItem }) => {
   useEffect(() => {
     setMyCartList(myCart);
     calculateSubtotal(myCart);
+
+    //navigate user back if the cart is empty
+    if (myCart.length == 0) {
+      Alert.alert("Empty Cart", "Your cart is now empty, keep browsing", [
+        { text: "OK", onPress: () => navigation.goBack() },
+      ]);
+    }
   }, [myCart]);
 
   const removeFoodItem = (id) => {
     let newcartList = [...myCartList];
     let index = newcartList.findIndex((cart) => cart.id === id);
     newcartList.splice(index, 1);
-    setMyCartList(newcartList);
+    setUpdateCart(newcartList);
+    console.log(myCart);
   };
 
   function renderHeader() {
@@ -177,12 +191,13 @@ const MyCart = ({ navigation, myCart, products, setCartItem }) => {
         <FooterTotal
           subTotal={subTotal ?? 0}
           shippingFess={shippingFess}
-          total={total}
+          total={total ?? 0}
           onPress={() => navigation.navigate("MyCard")}
         />
       </View>
     );
   }
+
   return (
     <View
       style={{
@@ -238,6 +253,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setCartItem: (foodItem) => {
       return dispatch(setCartItem(foodItem));
+    },
+    setUpdateCart: (cart) => {
+      return dispatch(setUpdateCart(cart));
     },
   };
 }

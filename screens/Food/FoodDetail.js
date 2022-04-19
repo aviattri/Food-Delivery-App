@@ -352,7 +352,11 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
           }}
           onPress={() => {
             //dispatch
-            setCartItem({ ...foodDetail, qty: stepperValue });
+            setCartItem({
+              ...foodDetail,
+              qty: stepperValue,
+              price: foodDetail.price * stepperValue,
+            });
             navigation.navigate("MyCart");
           }}
           disabled={false}

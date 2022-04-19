@@ -33,7 +33,12 @@ const CartReducer = (state = intialState, action) => {
         };
       }
     }
-
+    case cartActionTypes.UPDATE_CART: {
+      return {
+        ...state,
+        cart: action.payload.cart,
+      };
+    }
     default:
       return state;
   }
