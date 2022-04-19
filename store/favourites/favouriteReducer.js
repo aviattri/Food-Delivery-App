@@ -21,7 +21,6 @@ const FavouiteReducer = (state = intialState, action) => {
         //       }
         //     : item
         // );
-        console.log(action.payload.item.isFavourite);
         return {
           ...state,
           favourites: state.favourites,
@@ -34,9 +33,15 @@ const FavouiteReducer = (state = intialState, action) => {
       }
     }
     case favouriteActionTypes.UPDATE_FAVOURITE_LIST: {
+      let newFavList = [state.favourites];
+      let index = state.favourites.findIndex(
+        (item) => item.id === action.payload.item.id
+      );
+      newFavList.splice(index, 1);
+
       return {
         ...state,
-        favourites: action.payload.list,
+        favourites: newFavList,
       };
     }
     default:

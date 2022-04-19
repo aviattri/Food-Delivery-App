@@ -21,7 +21,10 @@ import {
 
 import { connect } from "react-redux";
 import { setCartItem } from "../../store/cart/cartActions";
-import { setFavouriteList } from "../../store/favourites/favouriteActions";
+import {
+  setFavouriteList,
+  setUpdateFavouiteList,
+} from "../../store/favourites/favouriteActions";
 
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
@@ -34,20 +37,23 @@ const FoodDetail = ({
   setCartItem,
   favourites,
   setFavouriteList,
+  setUpdateFavouiteList,
 }) => {
   const [orderTag, setOrderTag] = useState("Ratings");
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
   const [favourite, setFavourite] = useState(false);
   const { foodDetail } = route.params;
-  // console.log(foodDetail);
 
+  // console.log(foodDetail);
   useEffect(() => {
-    if (favourites.find((item, index) => item.name == foodDetail.name)) {
+    let isFav = favourites?.find((item, index) => item.name == foodDetail.name);
+    if (isFav) {
       setFavourite(true);
+    } else {
+      setFavourite(false);
     }
   }, [favourites]);
-
   function renderHeader() {
     return (
       <Header
@@ -118,7 +124,19 @@ const FoodDetail = ({
               </Text>
             </View>
             {/* Favourite */}
-            <TouchableOpacity onPress={() => setFavouriteList(foodDetail)}>
+            <TouchableOpacity
+              onPress={() => {
+                let isFav = favourites?.find(
+                  (item, index) => item.name == foodDetail.name
+                );
+                //item does not exists in fav list
+                if (!isFav) {
+                  setFavouriteList(foodDetail);
+                } else {
+                  setUpdateFavouiteList(foodDetail);
+                }
+              }}
+            >
               <Image
                 source={icons.love}
                 style={{
@@ -402,7 +420,7 @@ const FoodDetail = ({
 };
 
 function mapStateToProps(state) {
-  console.log(state.favouriteReducer);
+  console.log(state.favouriteReducer.favourites);
   return {
     myCart: state.cartReducer.cart,
     favourites: state.favouriteReducer.favourites,
@@ -415,6 +433,9 @@ function mapDispatchToProps(dispatch) {
     },
     setFavouriteList: (foodItem) => {
       return dispatch(setFavouriteList(foodItem));
+    },
+    setUpdateFavouiteList: (foodItem) => {
+      return dispatch(setUpdateFavouiteList(foodItem));
     },
   };
 }

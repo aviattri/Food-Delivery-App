@@ -18,7 +18,7 @@ import { setProducts } from "../../store/products/productActions";
 
 import FilterModal from "./FilterModal";
 
-const Home = ({ navigation, setProducts }) => {
+const Home = ({ navigation, setProducts, favourites }) => {
   const [selectedCatergoryId, setSelectedCatergoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
@@ -30,7 +30,7 @@ const Home = ({ navigation, setProducts }) => {
     //load products to store
     setProducts(dummyData.products);
     handleChangeCategory(selectedCatergoryId, selectedMenuType);
-  }, []);
+  }, [favourites]);
 
   const handleChangeCategory = (categoryId, menuTypeId) => {
     //retrieve the popular item
@@ -156,6 +156,7 @@ const Home = ({ navigation, setProducts }) => {
                 alignItems: "center",
               }}
               item={item}
+              isFavourite={favourites?.indexOf(item) >= 0}
               onPress={() =>
                 navigation.navigate("FoodDetail", { foodDetail: item })
               }
@@ -340,6 +341,7 @@ const Home = ({ navigation, setProducts }) => {
 function mapStateToProps(state) {
   return {
     products: state.productReducer.products,
+    favourites: state.favouriteReducer.favourites,
   };
 }
 function mapDispatchToProps(dispatch) {

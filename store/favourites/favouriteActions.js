@@ -6,15 +6,15 @@ export const setFavouriteListSuccess = (item) => ({
   payload: { item: item },
 });
 
-export const setUpdateFavouriteListSucess = (list) => ({
+export const setUpdateFavouriteListSucess = (item) => ({
   type: UPDATE_FAVOURITE_LIST,
-  payload: { list },
+  payload: { item: item },
 });
 
 export function setFavouriteList(item) {
   return (dispatch) => dispatch(setFavouriteListSuccess(item));
 }
 
-export function setUpdateFavouiteList(list) {
-  return (dispatch) => dispatch(setUpdateFavouriteListSucess(list));
+export function setUpdateFavouiteList(item) {
+  return (dispatch) => dispatch(setUpdateFavouriteListSucess(item));
 }

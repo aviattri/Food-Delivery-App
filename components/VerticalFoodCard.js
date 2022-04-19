@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS, FONTS, icons, SIZES } from "../constants";
 
-const VerticalFoodCard = ({ containerStyle, item, onPress }) => {
+const VerticalFoodCard = ({ containerStyle, item, isFavourite, onPress }) => {
   return (
     <TouchableOpacity
       style={{
@@ -35,7 +35,7 @@ const VerticalFoodCard = ({ containerStyle, item, onPress }) => {
           style={{
             width: 20,
             height: 20,
-            tintColor: item.isFavourite ? COLORS.primary : COLORS.gray,
+            tintColor: isFavourite ? COLORS.primary : COLORS.gray,
           }}
         />
       </View>
