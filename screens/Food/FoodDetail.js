@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   COLORS,
   dummyData,
@@ -8,6 +9,7 @@ import {
   images,
   SIZES,
 } from "../../constants";
+
 import {
   CartQuantityButton,
   Header,
@@ -21,14 +23,14 @@ import {
 
 import { connect } from "react-redux";
 import { setCartItem } from "../../store/cart/cartActions";
+
 import {
   setFavouriteList,
   setUpdateFavouiteList,
 } from "../../store/favourites/favouriteActions";
 
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { useState } from "react";
-import { useEffect } from "react";
+import Toast from "react-native-root-toast";
 
 const FoodDetail = ({
   navigation,
@@ -132,6 +134,11 @@ const FoodDetail = ({
                 //item does not exists in fav list
                 if (!isFav) {
                   setFavouriteList(foodDetail);
+                  Toast.show("Item added to favourites", {
+                    duration: Toast.durations.LONG,
+                    backgroundColor: COLORS.white,
+                    textColor: COLORS.black,
+                  });
                 } else {
                   setUpdateFavouiteList(foodDetail);
                 }
