@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     myCart: state.cartReducer.cart,
   };

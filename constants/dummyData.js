@@ -1,7 +1,7 @@
 const myProfile = {
-  name: "ByProgrammers",
+  name: "Kevin Durant",
   profile_image: require("../assets/images/profile.png"),
-  address: "No. 88, Jln Padungan, Kuching",
+  address: "29 Myrtle Street, Chippendale, NSW",
 };
 
 const categories = [
@@ -68,7 +68,7 @@ const hamburger = {
   name: "Hamburger",
   description: "Chicken patty hamburger",
   categories: [1, 2],
-  price: 15.99,
+  price: 15,
   calories: 78,
   isFavourite: true,
   image: require("../assets/dummyData/hamburger.png"),
@@ -79,7 +79,7 @@ const hotTacos = {
   name: "Hot Tacos",
   description: "Mexican tortilla & tacos",
   categories: [1, 3],
-  price: 10.99,
+  price: 10,
   calories: 78,
   isFavourite: false,
   image: require("../assets/dummyData/hot_tacos.png"),
@@ -118,6 +118,9 @@ const indian = {
   isFavourite: true,
   image: require("../assets/dummyData/butter_chicken.png"),
 };
+
+const products = [hamburger, hotTacos, vegBiryani, wrapSandwich, indian];
+
 const menu = [
   {
     id: 1,
@@ -248,4 +251,5 @@ export default {
   myCards,
   allCards,
   fromLocs,
+  products,
 };

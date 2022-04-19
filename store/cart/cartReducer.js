@@ -11,13 +11,14 @@ const CartReducer = (state = intialState, action) => {
         (item) => item.name === action.payload.item.name
       );
       let updatedCart = [];
-      //if item exits, then change the qty of that item in state
+      //if item exits, then change the qty and price of that item in state
       if (foodItem) {
         updatedCart = state.cart.map((item) =>
           item.name === action.payload.item.name
             ? {
                 ...item,
                 qty: action.payload.item.qty,
+                price: action.payload.item.price,
               }
             : item
         );

@@ -12,9 +12,13 @@ import {
   VerticalFoodCard,
   Section,
 } from "../../components";
+
+import { connect } from "react-redux";
+import { setProducts } from "../../store/products/productActions";
+
 import FilterModal from "./FilterModal";
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, setProducts }) => {
   const [selectedCatergoryId, setSelectedCatergoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
@@ -23,6 +27,8 @@ const Home = ({ navigation }) => {
   const [showFilterModal, setShowFilterModal] = useState(false);
 
   useEffect(() => {
+    //load products to store
+    setProducts(dummyData.products);
     handleChangeCategory(selectedCatergoryId, selectedMenuType);
   }, []);
 
@@ -331,5 +337,17 @@ const Home = ({ navigation }) => {
     </View>
   );
 };
+function mapStateToProps(state) {
+  return {
+    products: state.productReducer.products,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setProducts: (products) => {
+      return dispatch(setProducts(products));
+    },
+  };
+}
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

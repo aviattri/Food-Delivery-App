@@ -335,7 +335,7 @@ const FoodDetail = ({ navigation, route, myCart, setCartItem }) => {
         {/* Buy Button */}
         <TextButton
           label={`Buy Now`}
-          label2={`$${15.99}`}
+          label2={`$${foodDetail.price}`}
           labelStyle={{
             color: COLORS.white,
             ...FONTS.h3,
