@@ -15,11 +15,28 @@ import {
   TextButton,
   TextIconButton,
 } from "../../components";
+
+import { connect } from "react-redux";
+import { setClearCart } from "../../store/cart/cartActions";
+import { setPastOrder } from "../../store/orders/orderActions";
+
 import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
+import { useEffect } from "react";
 
-const DeliveryStatus = ({ navigation }) => {
-  const [currentStep, setCurrentStep] = useState(2);
+const DeliveryStatus = ({
+  navigation,
+  setPastOrder,
+  cartTotal,
+  myCart,
+  setClearCart,
+}) => {
+  const [currentStep, setCurrentStep] = useState(0);
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentStep <= 5) setCurrentStep(currentStep + 1);
+    }, 3000);
+  });
   function renderHeader() {
     return (
       <Header
@@ -186,6 +203,7 @@ const DeliveryStatus = ({ navigation }) => {
         style={{
           marginTop: SIZES.padding,
           marginBottom: SIZES.padding,
+          alignItems: "center",
         }}
       >
         {currentStep < constants.track_order_status.length - 1 && (
@@ -242,11 +260,29 @@ const DeliveryStatus = ({ navigation }) => {
             />
           </View>
         )}
-        {currentStep == constants.track_order_status.length - 1 && (
+        {currentStep >= 5 && (
           <TextButton
-            buttonContainerStyle={{ height: 55, borderRadius: SIZES.base }}
+            buttonContainerStyle={{
+              height: 55,
+              paddingHorizontal: SIZES.padding * 3,
+              borderRadius: SIZES.radius,
+              backgroundColor: COLORS.primary,
+            }}
             label="DONE"
-            onPress={() => navigation.navigate("Home")}
+            labelStyle={{
+              color: COLORS.white,
+              ...FONTS.h3,
+            }}
+            onPress={() => {
+              //add to past orders
+              setPastOrder({
+                orderTotal: cartTotal,
+                orderDetails: myCart,
+              });
+              //empty the cart
+              setClearCart();
+              navigation.navigate("Home");
+            }}
           />
         )}
       </View>
@@ -274,4 +310,23 @@ const DeliveryStatus = ({ navigation }) => {
   );
 };
 
-export default DeliveryStatus;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    myCart: state.cartReducer.cart,
+    // orders: state.orderRedcuer.pastOrders,
+    cartTotal: state.cartReducer.cartTotal,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setClearCart: () => {
+      return dispatch(setClearCart());
+    },
+    setPastOrder: (order) => {
+      return dispatch(setPastOrder(order));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryStatus);

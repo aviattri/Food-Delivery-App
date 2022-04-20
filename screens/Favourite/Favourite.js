@@ -16,7 +16,6 @@ const Favourite = ({ navigation, favourites }) => {
         <View
           style={{
             flex: 1,
-            marginTop: SIZES.padding,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -42,6 +41,7 @@ const Favourite = ({ navigation, favourites }) => {
     <View
       style={{
         flex: 1,
+        marginTop: SIZES.padding,
       }}
     >
       {/* List */}

@@ -4,7 +4,11 @@ import { COLORS, FONTS, SIZES } from "../../constants";
 import { TextButton } from "../../components";
 import LottieView from "lottie-react-native";
 
-const Success = ({ navigation }) => {
+import { connect } from "react-redux";
+import { setPastOrder } from "../../store/orders/orderActions";
+import { setCartItem, setUpdateCart } from "../../store/cart/cartActions";
+
+const Success = ({ navigation, setPastOrder, setCartItem }) => {
   return (
     <View
       style={{
@@ -58,4 +62,24 @@ const Success = ({ navigation }) => {
   );
 };
 
-export default Success;
+function mapStateToProps(state) {
+  return {
+    pastOrders: state.orderReducer.pastOrders,
+    myCart: state.cartReducer.cart,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setPastOrder: (order) => {
+      return dispatch(setPastOrder(order));
+    },
+    setCartItem: (foodItem) => {
+      return dispatch(setCartItem(foodItem));
+    },
+    setUpdateCart: (cart) => {
+      return dispatch(setUpdateCart(cart));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Success);

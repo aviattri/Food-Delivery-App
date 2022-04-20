@@ -9,7 +9,11 @@ import {
 } from "../../components";
 
 import { connect } from "react-redux";
-import { setCartItem, setUpdateCart } from "../../store/cart/cartActions";
+import {
+  setCartItem,
+  setUpdateCart,
+  setCartTotal,
+} from "../../store/cart/cartActions";
 
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
@@ -21,6 +25,7 @@ const MyCart = ({
   products,
   setCartItem,
   setUpdateCart,
+  setCartTotal,
 }) => {
   const [myCartList, setMyCartList] = useState(myCart);
   const [subTotal, setSubTotal] = useState(0);
@@ -192,7 +197,17 @@ const MyCart = ({
           subTotal={subTotal ?? 0}
           shippingFess={shippingFess}
           total={total ?? 0}
-          onPress={() => navigation.navigate("MyCard")}
+          onPress={() => {
+            //dispatch
+            setCartTotal({
+              orderPrice: {
+                subTotal: subTotal,
+                total: total,
+                shippingFess: shippingFess,
+              },
+            });
+            navigation.navigate("MyCard");
+          }}
         />
       </View>
     );
@@ -256,6 +271,9 @@ function mapDispatchToProps(dispatch) {
     },
     setUpdateCart: (cart) => {
       return dispatch(setUpdateCart(cart));
+    },
+    setCartTotal: (total) => {
+      return dispatch(setCartTotal(total));
     },
   };
 }

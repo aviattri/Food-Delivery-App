@@ -45,6 +45,11 @@ const FoodDetail = ({
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
   const [favourite, setFavourite] = useState(false);
+  const [restaurantDetails, setRestaurantDetails] = useState({
+    name: "Dominos",
+    distance: "1km",
+  });
+
   const { foodDetail } = route.params;
 
   // console.log(foodDetail);
@@ -326,14 +331,14 @@ const FoodDetail = ({
         />
         {/* Restuarant info */}
         <View style={{ flexDirection: "column", marginLeft: SIZES.radius }}>
-          <Text style={{ ...FONTS.h3 }}>Totya Food</Text>
+          <Text style={{ ...FONTS.h3 }}>{restaurantDetails.name}</Text>
           <Text
             style={{
               color: COLORS.gray,
               ...FONTS.body3,
             }}
           >
-            600m away from you
+            {`${restaurantDetails.distance} away from you`}
           </Text>
         </View>
         {/* Restuarant Rating */}
@@ -396,6 +401,7 @@ const FoodDetail = ({
               ...foodDetail,
               qty: stepperValue,
               price: foodDetail.price * stepperValue,
+              restaurantDetails: restaurantDetails,
             });
             navigation.navigate("MyCart");
           }}

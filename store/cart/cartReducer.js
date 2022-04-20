@@ -2,6 +2,7 @@ import * as cartActionTypes from "./cartActions";
 
 const intialState = {
   cart: [],
+  cartTotal: [],
 };
 
 const CartReducer = (state = intialState, action) => {
@@ -37,6 +38,19 @@ const CartReducer = (state = intialState, action) => {
       return {
         ...state,
         cart: action.payload.cart,
+      };
+    }
+    case cartActionTypes.SET_CART_TOTAL: {
+      return {
+        ...state,
+        cartTotal: action.payload.total,
+      };
+    }
+    case cartActionTypes.CLEAR_CART: {
+      return {
+        ...state,
+        cartTotal: [],
+        cart: [],
       };
     }
     default:

@@ -179,7 +179,7 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             isFocused={selectedTab == constants.screens.track_order}
             onPress={() => {
               setSelectedTab(constants.screens.track_order);
-              navigation.navigate("MainLayout");
+              navigation.navigate("DeliveryStatus");
             }}
           />
           {/* Coupons */}

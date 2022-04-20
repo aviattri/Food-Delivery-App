@@ -11,8 +11,10 @@ import {
 } from "../../components";
 import { useState } from "react";
 import { useEffect } from "react";
+import { connect } from "react-redux";
+import { setCartItem, setUpdateCart } from "../../store/cart/cartActions";
 
-const Checkout = ({ navigation, route }) => {
+const Checkout = ({ navigation, route, cartTotal }) => {
   const [selectedCard, setSelectedCard] = useState(null);
   useEffect(() => {
     let { cardDetails } = route.params;
@@ -182,13 +184,27 @@ const Checkout = ({ navigation, route }) => {
       </KeyboardAwareScrollView>
       {/* Footer  */}
       <FooterTotal
-        subTotal={41}
-        shippingFess={0}
-        total={41}
+        subTotal={cartTotal.orderPrice.subTotal}
+        shippingFess={cartTotal.orderPrice.shippingFess}
+        total={cartTotal.orderPrice.total}
         onPress={() => navigation.navigate("Success")}
       />
     </View>
   );
 };
 
-export default Checkout;
+function mapStateToProps(state) {
+  return {
+    myCart: state.cartReducer.cart,
+    cartTotal: state.cartReducer.cartTotal,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setUpdateCart: (cart) => {
+      return dispatch(setUpdateCart(cart));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
