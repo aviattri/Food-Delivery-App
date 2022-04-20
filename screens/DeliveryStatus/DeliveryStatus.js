@@ -35,12 +35,28 @@ const DeliveryStatus = ({
   setClearCart,
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
+
+  function cancelOrder() {
+    let deliveryTime = curretDate;
+    // add to past orders
+    setPastOrder({
+      orderTotal: cartTotal,
+      orderDetails: myCart,
+      orderStatus: "cancelled",
+      orderDeliveryTime: deliveryTime,
+    });
+
+    //dispatch clear cart
+    setClearCart();
+    navigation.navigate("Home");
+  }
+
   useEffect(() => {
     let dilveryTime = setTimeout(() => {
       if (currentStep <= 4) {
         setCurrentStep(currentStep + 1);
       }
-    }, 3000);
+    }, 11000);
 
     //if order is delivered
     if (currentStep == 3) {
@@ -228,7 +244,25 @@ const DeliveryStatus = ({
           alignItems: "center",
         }}
       >
-        {currentStep < constants.track_order_status.length - 1 && (
+        {/* if order is confirmed but not prepared */}
+        {currentStep == 0 && (
+          <TextButton
+            buttonContainerStyle={{
+              height: 55,
+              paddingHorizontal: SIZES.padding * 3,
+              borderRadius: SIZES.radius,
+              backgroundColor: COLORS.primary,
+            }}
+            label="CANCEL ORDER"
+            labelStyle={{
+              color: COLORS.white,
+              ...FONTS.h3,
+            }}
+            onPress={() => cancelOrder()}
+          />
+        )}
+        {/* delivering... if order is confirmed and prepared */}
+        {currentStep != 0 && currentStep <= 3 && (
           <View
             style={{
               flexDirection: "row",
@@ -282,7 +316,8 @@ const DeliveryStatus = ({
             />
           </View>
         )}
-        {currentStep >= 5 && (
+        {/*delivered...  */}
+        {currentStep != 0 && currentStep > 4 && (
           <TextButton
             buttonContainerStyle={{
               height: 55,
