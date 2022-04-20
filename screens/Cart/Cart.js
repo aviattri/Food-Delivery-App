@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import LottieView from "lottie-react-native";
@@ -11,33 +11,91 @@ import {
 } from "../../components";
 
 import { connect } from "react-redux";
-import { setCartItem } from "../../store/cart/cartActions";
+import {
+  setCartItem,
+  setUpdateCart,
+  setCartTotal,
+} from "../../store/cart/cartActions";
 
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
 
 import { useEffect } from "react";
 
-const Cart = ({ navigation, myCart }) => {
+const Cart = ({
+  navigation,
+  myCart,
+  products,
+  setCartItem,
+  setUpdateCart,
+  setCartTotal,
+}) => {
   const [myCartList, setMyCartList] = useState(myCart);
-  const updateQuanityHandler = (newQty, id) => {
+  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [shippingFess, setShippingFess] = useState(3.4);
+
+  const updateQuanityHandler = (newQty, id, newPrice) => {
     const newMyCartList = myCartList.map((cl) =>
-      cl.id === id ? { ...cl, qty: newQty } : cl
+      cl.id === id ? setCartItem({ ...cl, qty: newQty, price: newPrice }) : cl
     );
-    setMyCartList(newMyCartList);
   };
+  const calculateSubtotal = (cart) => {
+    let price = 0;
+    let totalPrice = 0;
+    //cal subtotal
+    cart.map((item, index) => (price = price + item.price));
+    setSubTotal(price);
+    //cal total
+    totalPrice = price + shippingFess;
+    setTotal(totalPrice);
+  };
+
+  useEffect(() => {
+    setMyCartList(myCart);
+    calculateSubtotal(myCart);
+  }, [myCart]);
 
   const removeFoodItem = (id) => {
     let newcartList = [...myCartList];
     let index = newcartList.findIndex((cart) => cart.id === id);
     newcartList.splice(index, 1);
-    setMyCartList(newcartList);
+    setUpdateCart(newcartList);
   };
 
   useEffect(() => {
     setMyCartList(myCart);
   }, [myCart]);
 
+  function renderHeader() {
+    return (
+      <Header
+        containerStyle={{
+          height: 40,
+          marginHorizontal: SIZES.padding,
+          marginTop: 40,
+        }}
+        title="MY CART"
+        leftComponent={
+          <IconButton
+            containerStyle={{
+              width: 40,
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center",
+              borderWidth: 1,
+              borderRadius: SIZES.radius,
+              borderColor: COLORS.gray2,
+            }}
+            icon={icons.back}
+            iconStyle={{ width: 20, height: 20, tintColor: COLORS.gray2 }}
+            onPress={() => navigation.goBack()}
+          />
+        }
+        rightComponent={<CartQuantityButton quantity={myCart.length ?? 0} />}
+      />
+    );
+  }
   function renderCartList() {
     return (
       <SwipeListView
@@ -74,14 +132,29 @@ const Cart = ({ navigation, myCart }) => {
             <StepperInput
               containerStyle={styles.stepperInput}
               value={data.item.qty}
-              onAdd={() =>
-                updateQuanityHandler(data.item.qty + 1, data.item.id)
-              }
-              onMinus={() =>
+              onAdd={() => {
+                let selectedItem = products.find(
+                  (item) => item.id == data.item.id
+                );
+                updateQuanityHandler(
+                  data.item.qty + 1,
+                  data.item.id,
+                  data.item.price + selectedItem.price
+                );
+              }}
+              onMinus={() => {
+                let selectedItem = products.find(
+                  (item) => item.id == data.item.id
+                );
+
                 data.item.qty > 1
-                  ? updateQuanityHandler(data.item.qty - 1, data.item.id)
-                  : ""
-              }
+                  ? updateQuanityHandler(
+                      data.item.qty - 1,
+                      data.item.id,
+                      data.item.price - selectedItem.price
+                    )
+                  : "";
+              }}
             />
           </View>
         )}
@@ -105,7 +178,6 @@ const Cart = ({ navigation, myCart }) => {
             onPress={() => removeFoodItem(data.item.id)}
           />
         )}
-        ListFooterComponent={<View style={{ height: 200 }}></View>}
       />
     );
   }
@@ -118,10 +190,20 @@ const Cart = ({ navigation, myCart }) => {
         }}
       >
         <FooterTotal
-          subTotal={41}
-          shippingFess={0}
-          total={41}
-          onPress={() => navigation.navigate("MyCard")}
+          subTotal={subTotal ?? 0}
+          shippingFess={shippingFess}
+          total={total ?? 0}
+          onPress={() => {
+            //dispatch
+            setCartTotal({
+              orderPrice: {
+                subTotal: subTotal,
+                total: total,
+                shippingFess: shippingFess,
+              },
+            });
+            navigation.navigate("MyCard");
+          }}
         />
       </View>
     );
@@ -202,12 +284,19 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     myCart: state.cartReducer.cart,
+    products: state.productReducer.products,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     setCartItem: (foodItem) => {
       return dispatch(setCartItem(foodItem));
+    },
+    setUpdateCart: (cart) => {
+      return dispatch(setUpdateCart(cart));
+    },
+    setCartTotal: (total) => {
+      return dispatch(setCartTotal(total));
     },
   };
 }

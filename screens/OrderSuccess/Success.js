@@ -27,12 +27,9 @@ const Success = ({ navigation, setPastOrder, setCartItem }) => {
       >
         <LottieView
           resizeMode="contain"
-          style={{
-            height: 150,
-            width: 150,
-          }}
+          style={{ justifyContent: "flex-start", height: 200 }}
           autoPlay
-          source={require("../../assets/animations/success.json")}
+          source={require("../../assets/animations/success_2.json")}
         />
         <Text style={{ marginTop: SIZES.padding, ...FONTS.h1 }}>
           Order placed

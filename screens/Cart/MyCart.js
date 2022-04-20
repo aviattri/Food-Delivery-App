@@ -1,12 +1,7 @@
 import { View, Text, Image, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
-import {
-  CartQuantityButton,
-  Header,
-  IconButton,
-  StepperInput,
-} from "../../components";
+import { Header, IconButton, StepperInput } from "../../components";
 
 import { connect } from "react-redux";
 import {
@@ -93,7 +88,23 @@ const MyCart = ({
             onPress={() => navigation.goBack()}
           />
         }
-        rightComponent={<CartQuantityButton quantity={myCart.length ?? 0} />}
+        rightComponent={
+          <IconButton
+            containerStyle={{
+              width: 40,
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center",
+              borderWidth: 1,
+              borderRadius: SIZES.radius,
+              borderColor: COLORS.gray3,
+              backgroundColor: COLORS.primary,
+            }}
+            icon={icons.home}
+            iconStyle={{ width: 20, height: 20, tintColor: COLORS.lightGray2 }}
+            onPress={() => navigation.navigate("Home")}
+          />
+        }
       />
     );
   }

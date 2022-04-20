@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
+import LottieView from "lottie-react-native";
 import {
   COLORS,
   constants,
@@ -288,6 +289,38 @@ const DeliveryStatus = ({
       </View>
     );
   }
+
+  if (myCart.length == 0) {
+    //cart is empty
+    return (
+      <>
+        {/* Header */}
+        {renderHeader()}
+        <View
+          style={{
+            flex: 1,
+            marginTop: SIZES.padding,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: COLORS.black, ...FONTS.body2 }}>
+            Nothing to Track
+          </Text>
+          <Text style={{ color: COLORS.gray, ...FONTS.body3 }}>
+            Order exciting food now!
+          </Text>
+        </View>
+        <LottieView
+          resizeMode="contain"
+          style={{ flex: 1, justifyContent: "flex-start", height: 100 }}
+          autoPlay
+          source={require("../../assets/animations/order_food.json")}
+        />
+      </>
+    );
+  }
+
   return (
     <View
       style={{
@@ -311,10 +344,8 @@ const DeliveryStatus = ({
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     myCart: state.cartReducer.cart,
-    // orders: state.orderRedcuer.pastOrders,
     cartTotal: state.cartReducer.cartTotal,
   };
 }
