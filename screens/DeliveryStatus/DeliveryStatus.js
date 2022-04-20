@@ -34,20 +34,24 @@ const DeliveryStatus = ({
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
   useEffect(() => {
-    setTimeout(() => {
-      if (currentStep <= 5) setCurrentStep(currentStep + 1);
+    let dilveryTime = setTimeout(() => {
+      if (currentStep <= 4) {
+        setCurrentStep(currentStep + 1);
+      }
     }, 3000);
 
     //if order is delivered
     if (currentStep == 3) {
-      //add to past orders
+      // add to past orders
       setPastOrder({
         orderTotal: cartTotal,
         orderDetails: myCart,
       });
-      //empty the cart
-      // setClearCart();
     }
+
+    return () => {
+      clearTimeout(dilveryTime);
+    };
   });
   function renderHeader() {
     return (
@@ -239,7 +243,6 @@ const DeliveryStatus = ({
                 backgroundColor: COLORS.lightGray2,
               }}
               onPress={() => {
-                //dispatch
                 navigation.navigate("Home");
               }}
               disabled={false}
@@ -267,6 +270,7 @@ const DeliveryStatus = ({
               }}
               onPress={() => {
                 //dispatch
+
                 navigation.navigate("Map");
               }}
             />
@@ -286,6 +290,8 @@ const DeliveryStatus = ({
               ...FONTS.h3,
             }}
             onPress={() => {
+              //dispatch
+              setClearCart();
               navigation.navigate("Home");
             }}
           />

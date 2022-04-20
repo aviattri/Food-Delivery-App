@@ -184,9 +184,9 @@ const Checkout = ({ navigation, route, cartTotal }) => {
       </KeyboardAwareScrollView>
       {/* Footer  */}
       <FooterTotal
-        subTotal={cartTotal.orderPrice.subTotal}
-        shippingFess={cartTotal.orderPrice.shippingFess}
-        total={cartTotal.orderPrice.total}
+        subTotal={cartTotal?.orderPrice?.subTotal ?? 0}
+        shippingFess={cartTotal?.orderPrice?.shippingFess ?? 0}
+        total={cartTotal?.orderPrice?.total ?? 0}
         onPress={() => navigation.navigate("Success")}
       />
     </View>

@@ -205,8 +205,8 @@ const MyOrders = ({ navigation, orderHistory }) => {
                     item?.orderDetails[0]?.restaurantDetails?.name
                   }
                   orderTotal={`$${item?.orderTotal?.orderPrice?.total}`}
-                  orderTime={"19th Sep. 14:30"}
-                  orderItems={0}
+                  orderTime={"19th Sep. 14:30 "}
+                  orderItems={item?.orderDetails.length}
                   orderStatus={"deliverd"}
                 />
                 {/* Reorder and Rate buttons */}

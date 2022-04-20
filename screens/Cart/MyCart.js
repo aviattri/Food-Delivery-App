@@ -48,11 +48,11 @@ const MyCart = ({
     calculateSubtotal(myCart);
 
     //navigate user back if the cart is empty
-    if (myCart.length == 0) {
-      Alert.alert("Empty Cart", "Your cart is now empty, keep browsing", [
-        { text: "OK", onPress: () => navigation.goBack() },
-      ]);
-    }
+    // if (myCart.length == 0) {
+    //   Alert.alert("Empty Cart", "Your cart is now empty, keep browsing", [
+    //     { text: "OK", onPress: () => navigation.goBack() },
+    //   ]);
+    // }
   }, [myCart]);
 
   const removeFoodItem = (id) => {
