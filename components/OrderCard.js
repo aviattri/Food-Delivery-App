@@ -54,15 +54,15 @@ const OrderCard = ({
           </Text>
         </View>
         <Text style={{ color: COLORS.gray, ...FONTS.body3 }}>
-          {`${orderTime}` + `• ${orderItems} items`}
+          {`${orderTime}` + ` • ` + `${orderItems} items`}
         </Text>
         <Text
           style={{
-            color: orderStatus == "deliverd" ? COLORS.green : COLORS.red,
+            color: orderStatus == "delivered" ? COLORS.green : COLORS.red,
             ...FONTS.body4,
           }}
         >
-          {orderStatus == "deliverd"
+          {orderStatus == "delivered"
             ? `● Order Delivered`
             : "● Order Cancelled"}
         </Text>

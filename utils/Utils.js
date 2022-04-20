@@ -40,6 +40,7 @@ function calculateAngle(coordinates) {
 
   return (Math.atan2(dy, dx) * 180) / Math.PI;
 }
+
 const utils = {
   isValidEmail,
   validateEmail,

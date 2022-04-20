@@ -22,6 +22,8 @@ import { setClearCart } from "../../store/cart/cartActions";
 import { setPastOrder } from "../../store/orders/orderActions";
 
 import { ScrollView } from "react-native-gesture-handler";
+import curretDate from "../../utils/currentTime";
+
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -42,10 +44,14 @@ const DeliveryStatus = ({
 
     //if order is delivered
     if (currentStep == 3) {
+      let deliveryTime = curretDate;
+
       // add to past orders
       setPastOrder({
         orderTotal: cartTotal,
         orderDetails: myCart,
+        orderStatus: "delivered",
+        orderDeliveryTime: deliveryTime,
       });
     }
 

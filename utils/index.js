@@ -1,6 +1,4 @@
 import utils from "./Utils";
+import curretDate from "./currentTime";
 
-export {
-    utils
-};
-
+export { utils, curretDate };

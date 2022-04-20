@@ -30,7 +30,6 @@ const MyOrders = ({ navigation, orderHistory }) => {
   const [selectedButton, setSelectedButton] = useState(0);
   const [orderCardSelectedButton, setOrderCardSelectedButton] = useState(0);
 
-  //   console.log(orderHistory);
   useEffect(() => {
     setPastOrders(orderHistory);
   }, [pastOrders]);
@@ -205,9 +204,9 @@ const MyOrders = ({ navigation, orderHistory }) => {
                     item?.orderDetails[0]?.restaurantDetails?.name
                   }
                   orderTotal={`$${item?.orderTotal?.orderPrice?.total}`}
-                  orderTime={"19th Sep. 14:30 "}
+                  orderTime={item.orderDeliveryTime}
                   orderItems={item?.orderDetails.length}
-                  orderStatus={"deliverd"}
+                  orderStatus={item.orderStatus}
                 />
                 {/* Reorder and Rate buttons */}
                 {renderOrderCardFooter()}
