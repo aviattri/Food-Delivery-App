@@ -153,24 +153,6 @@ const menu = [
     list: [hamburger, hotTacos, wrapSandwich, indian],
   },
 ];
-const myCart = [
-  {
-    ...hamburger,
-    qty: 1,
-  },
-  // {
-  //   ...hotTacos,
-  //   qty: 1,
-  // },
-  // {
-  //   ...vegBiryani,
-  //   qty: 1,
-  // },
-  // {
-  //   ...wrapSandwich,
-  //   qty: 1,
-  // },
-];
 
 const myCards = [
   {
@@ -215,6 +197,21 @@ const allCards = [
   },
 ];
 
+const resturants = [
+  {
+    id: 1,
+    name: "Pizza Deli",
+    distance: "1km",
+    icon: require("../assets/dummyData/deli.png"),
+  },
+  {
+    id: 2,
+    name: "Taco Bell",
+    distance: "1km",
+    icon: require("../assets/dummyData/deli.png"),
+  },
+];
+
 const fromLocs = [
   {
     latitude: 1.5347282806345879,
@@ -247,9 +244,9 @@ export default {
   menu,
   sizes,
   ratings,
-  myCart,
   myCards,
   allCards,
   fromLocs,
   products,
+  resturants,
 };

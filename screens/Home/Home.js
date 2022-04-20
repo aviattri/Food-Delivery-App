@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ActivityIndicator } from "react-native";
 import { useState } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import {
@@ -25,11 +25,19 @@ const Home = ({ navigation, setProducts, favourites }) => {
   const [recommend, setRecommend] = useState([]);
   const [popularFood, setPopularFood] = useState([]);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let loadAssets = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
     //load products to store
     setProducts(dummyData.products);
     handleChangeCategory(selectedCatergoryId, selectedMenuType);
+
+    return () => {
+      clearTimeout(loadAssets);
+    };
   }, [favourites]);
 
   const handleChangeCategory = (categoryId, menuTypeId) => {
@@ -275,6 +283,19 @@ const Home = ({ navigation, setProducts, favourites }) => {
             source={icons.filter}
           />
         </TouchableOpacity>
+      </View>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {isLoading && <ActivityIndicator size="large" color={COLORS.black} />}
       </View>
     );
   }

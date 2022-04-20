@@ -74,7 +74,7 @@ const DeliveryStatus = ({
     return () => {
       clearTimeout(dilveryTime);
     };
-  });
+  }, [currentStep]);
   function renderHeader() {
     return (
       <Header

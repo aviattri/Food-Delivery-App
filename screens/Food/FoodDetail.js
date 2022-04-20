@@ -45,10 +45,9 @@ const FoodDetail = ({
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
   const [favourite, setFavourite] = useState(false);
-  const [restaurantDetails, setRestaurantDetails] = useState({
-    name: "Dominos",
-    distance: "1km",
-  });
+  const [restaurantDetails, setRestaurantDetails] = useState(
+    dummyData.resturants[0]
+  );
 
   const { foodDetail } = route.params;
 
@@ -326,7 +325,7 @@ const FoodDetail = ({
         {/* Restuarant Image */}
         <Image
           resizeMode="contain"
-          source={images.hot_delivery}
+          source={restaurantDetails.icon}
           style={{ width: 50, height: 50 }}
         />
         {/* Restuarant info */}
