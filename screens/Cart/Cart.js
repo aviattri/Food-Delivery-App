@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, Alert } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import LottieView from "lottie-react-native";
 
@@ -20,8 +20,6 @@ import {
 import { SwipeListView } from "react-native-swipe-list-view";
 import FooterTotal from "../../components/FooterTotal";
 
-import { useEffect } from "react";
-
 const Cart = ({
   navigation,
   myCart,
@@ -34,11 +32,6 @@ const Cart = ({
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [shippingFess, setShippingFess] = useState(3.4);
-
-  const cmAnimation = useRef();
-  const playAnimation = () => {
-    cmAnimation.current.play();
-  };
 
   const updateQuanityHandler = (newQty, id, newPrice) => {
     const newMyCartList = myCartList.map((cl) =>
@@ -59,8 +52,6 @@ const Cart = ({
   useEffect(() => {
     setMyCartList(myCart);
     calculateSubtotal(myCart);
-    //play animation
-    playAnimation();
   }, [myCart]);
 
   const removeFoodItem = (id) => {
@@ -239,7 +230,6 @@ const Cart = ({
           resizeMode="contain"
           style={{ flex: 1, justifyContent: "flex-start", height: 100 }}
           loop={false}
-          ref={cmAnimation}
           source={require("../../assets/animations/order_food.json")}
         />
       </>

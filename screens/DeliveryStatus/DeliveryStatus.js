@@ -37,6 +37,17 @@ const DeliveryStatus = ({
     setTimeout(() => {
       if (currentStep <= 5) setCurrentStep(currentStep + 1);
     }, 3000);
+
+    //if order is delivered
+    if (currentStep == 3) {
+      //add to past orders
+      setPastOrder({
+        orderTotal: cartTotal,
+        orderDetails: myCart,
+      });
+      //empty the cart
+      // setClearCart();
+    }
   });
   function renderHeader() {
     return (
@@ -275,13 +286,6 @@ const DeliveryStatus = ({
               ...FONTS.h3,
             }}
             onPress={() => {
-              //add to past orders
-              setPastOrder({
-                orderTotal: cartTotal,
-                orderDetails: myCart,
-              });
-              //empty the cart
-              setClearCart();
               navigation.navigate("Home");
             }}
           />

@@ -153,14 +153,14 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
               navigation.navigate("MainLayout");
             }}
           />
-          {/* My Favourties */}
+          {/* My Orders */}
           <CustomDrawerItem
-            label={constants.screens.favourite}
-            icon={icons.location}
-            isFocused={selectedTab == constants.screens.favourite}
+            label={constants.screens.orderHistory}
+            icon={icons.clock}
+            isFocused={selectedTab == constants.screens.orderHistory}
             onPress={() => {
-              setSelectedTab(constants.screens.favourite);
-              navigation.navigate("MainLayout");
+              setSelectedTab(constants.screens.orderHistory);
+              navigation.navigate("OrderHisotry");
             }}
           />
           {/* line divider */}

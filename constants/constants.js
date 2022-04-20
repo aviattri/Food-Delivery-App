@@ -39,6 +39,7 @@ const screens = {
   refer_friend: "Invite A Friend",
   help_center: "Help Center",
   logout: "Logout",
+  orderHistory: "My Orders",
 };
 
 const bottom_tabs = [

@@ -18,6 +18,8 @@ import CardItem from "./CardItem";
 import FormInputCheck from "./FormInputCheck";
 import RadioButton from "./RadioButton";
 import FooterTotal from "./FooterTotal";
+import OrderCard from "./OrderCard";
+
 export {
   TabButton,
   TextButton,
@@ -39,4 +41,5 @@ export {
   FormInputCheck,
   RadioButton,
   FooterTotal,
+  OrderCard,
 };
