@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, Alert } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import LottieView from "lottie-react-native";
 
@@ -35,6 +35,11 @@ const Cart = ({
   const [total, setTotal] = useState(0);
   const [shippingFess, setShippingFess] = useState(3.4);
 
+  const cmAnimation = useRef();
+  const playAnimation = () => {
+    cmAnimation.current.play();
+  };
+
   const updateQuanityHandler = (newQty, id, newPrice) => {
     const newMyCartList = myCartList.map((cl) =>
       cl.id === id ? setCartItem({ ...cl, qty: newQty, price: newPrice }) : cl
@@ -54,6 +59,8 @@ const Cart = ({
   useEffect(() => {
     setMyCartList(myCart);
     calculateSubtotal(myCart);
+    //play animation
+    playAnimation();
   }, [myCart]);
 
   const removeFoodItem = (id) => {
@@ -231,8 +238,8 @@ const Cart = ({
         <LottieView
           resizeMode="contain"
           style={{ flex: 1, justifyContent: "flex-start", height: 100 }}
-          loop
-          autoPlay
+          loop={false}
+          ref={cmAnimation}
           source={require("../../assets/animations/order_food.json")}
         />
       </>
