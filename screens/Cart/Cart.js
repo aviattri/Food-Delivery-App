@@ -231,6 +231,7 @@ const Cart = ({
         <LottieView
           resizeMode="contain"
           style={{ flex: 1, justifyContent: "flex-start", height: 100 }}
+          loop
           autoPlay
           source={require("../../assets/animations/order_food.json")}
         />

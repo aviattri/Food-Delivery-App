@@ -28,6 +28,7 @@ const Success = ({ navigation, setPastOrder, setCartItem }) => {
         <LottieView
           resizeMode="contain"
           style={{ justifyContent: "flex-start", height: 200 }}
+          loop
           autoPlay
           source={require("../../assets/animations/success_2.json")}
         />
