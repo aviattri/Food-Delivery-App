@@ -19,6 +19,7 @@ import {
   Success,
   DeliveryStatus,
   Map,
+  MyOrders,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -124,6 +125,13 @@ const AppNavigation = () => {
               }}
               name="Map"
               component={Map}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="OrderHisotry"
+              component={MyOrders}
             />
           </>
         )}
