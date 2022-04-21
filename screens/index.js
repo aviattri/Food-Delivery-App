@@ -20,6 +20,7 @@ import Success from "./OrderSuccess/Success";
 import DeliveryStatus from "./DeliveryStatus/DeliveryStatus";
 import Map from "./Map/Map";
 import MyOrders from "./OrderHistory/MyOrders";
+import MyWallet from "./MyCard/MyWallet";
 
 export {
   OnBoarding,
@@ -42,4 +43,5 @@ export {
   DeliveryStatus,
   Map,
   MyOrders,
+  MyWallet,
 };

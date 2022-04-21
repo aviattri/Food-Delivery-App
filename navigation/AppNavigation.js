@@ -20,6 +20,7 @@ import {
   DeliveryStatus,
   Map,
   MyOrders,
+  MyWallet,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -132,6 +133,13 @@ const AppNavigation = () => {
               }}
               name="OrderHisotry"
               component={MyOrders}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MyWallet"
+              component={MyWallet}
             />
           </>
         )}
