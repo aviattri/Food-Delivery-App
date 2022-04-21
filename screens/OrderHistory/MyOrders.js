@@ -206,7 +206,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
                   orderTotal={`$${item?.orderTotal?.orderPrice?.total.toFixed(
                     2
                   )}`}
-                  orderTime={item.orderDeliveryTime}
+                  orderTime={item.deliveryDetails.deliveryTime}
                   orderItems={item?.orderDetails.length}
                   orderStatus={item.orderStatus}
                 />

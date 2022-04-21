@@ -19,7 +19,7 @@ import {
 
 import { connect } from "react-redux";
 import { setClearCart } from "../../store/cart/cartActions";
-import { setPastOrder } from "../../store/orders/orderActions";
+import { setPastOrder, setUpdateOrder } from "../../store/orders/orderActions";
 
 import { ScrollView } from "react-native-gesture-handler";
 import curretDate from "../../utils/currentTime";
@@ -27,54 +27,43 @@ import curretDate from "../../utils/currentTime";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const DeliveryStatus = ({
-  navigation,
-  setPastOrder,
-  cartTotal,
-  myCart,
-  setClearCart,
-}) => {
+const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [deliveryStatus, setDeliveryStatus] = useState(false);
 
   function cancelOrder() {
-    let deliveryTime = curretDate;
-    // add to past orders
-    setPastOrder({
-      orderTotal: cartTotal,
-      orderDetails: myCart,
-      orderStatus: "cancelled",
-      orderDeliveryTime: deliveryTime,
+    setUpdateOrder({
+      orderCalledByUser: true,
+      deliveryTime: curretDate,
     });
 
-    //dispatch clear cart
-    setClearCart();
     navigation.navigate("Home");
   }
 
   useEffect(() => {
+    //setDeliveryStatus
+    let orderStatus =
+      pastOrders[pastOrders.length - 1].orderStatus == "DELIVERED" ||
+      pastOrders[pastOrders.length - 1].orderStatus == "CANCELED";
+    setDeliveryStatus(orderStatus);
+
     let dilveryTime = setTimeout(() => {
       if (currentStep <= 4) {
         setCurrentStep(currentStep + 1);
       }
-    }, 11000);
+    }, 10000);
 
     //if order is delivered
     if (currentStep == 3) {
-      let deliveryTime = curretDate;
-
-      // add to past orders
-      setPastOrder({
-        orderTotal: cartTotal,
-        orderDetails: myCart,
-        orderStatus: "delivered",
-        orderDeliveryTime: deliveryTime,
-      });
+      // change delivery status
+      setUpdateOrder({ deliveryTime: curretDate });
     }
-
     return () => {
+      console.log(pastOrders);
       clearTimeout(dilveryTime);
     };
-  }, [currentStep]);
+  }, [currentStep, deliveryStatus]);
+
   function renderHeader() {
     return (
       <Header
@@ -341,7 +330,7 @@ const DeliveryStatus = ({
     );
   }
 
-  if (myCart.length == 0) {
+  if (deliveryStatus) {
     //cart is empty
     return (
       <>
@@ -397,17 +386,13 @@ const DeliveryStatus = ({
 
 function mapStateToProps(state) {
   return {
-    myCart: state.cartReducer.cart,
-    cartTotal: state.cartReducer.cartTotal,
+    pastOrders: state.orderReducer.pastOrders,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    setClearCart: () => {
-      return dispatch(setClearCart());
-    },
-    setPastOrder: (order) => {
-      return dispatch(setPastOrder(order));
+    setUpdateOrder: (deliveryDetails) => {
+      return dispatch(setUpdateOrder(deliveryDetails));
     },
   };
 }

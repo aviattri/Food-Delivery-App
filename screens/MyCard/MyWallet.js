@@ -16,7 +16,7 @@ const MyWallet = ({ navigation }) => {
           marginHorizontal: SIZES.padding,
           marginTop: 40,
         }}
-        title="MY CARDS"
+        title="MY WALLET"
         leftComponent={
           <IconButton
             containerStyle={{

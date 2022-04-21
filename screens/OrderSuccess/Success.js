@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import React from "react";
 import { COLORS, FONTS, SIZES } from "../../constants";
 import { TextButton } from "../../components";
@@ -6,9 +6,62 @@ import LottieView from "lottie-react-native";
 
 import { connect } from "react-redux";
 import { setPastOrder } from "../../store/orders/orderActions";
-import { setCartItem, setUpdateCart } from "../../store/cart/cartActions";
+import {
+  setCartItem,
+  setUpdateCart,
+  setClearCart,
+} from "../../store/cart/cartActions";
+import { useEffect, useState } from "react";
+import curretDate from "../../utils/currentTime";
 
-const Success = ({ navigation, setPastOrder, setCartItem }) => {
+const Success = ({
+  navigation,
+  cartTotal,
+  myCart,
+  pastOrders,
+  setPastOrder,
+  setClearCart,
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let dispatchingOrder = setTimeout(() => {
+      setIsLoading(false);
+
+      //record the order time
+      let deliveryTime = curretDate;
+
+      // add to past orders
+      setPastOrder({
+        orderTotal: cartTotal,
+        orderDetails: myCart,
+        orderStatus: "ACTIVE",
+        orderPlacedTime: deliveryTime,
+      });
+
+      //dispatch clear cart
+      setClearCart();
+    }, 2000);
+
+    return () => {
+      clearTimeout(dispatchingOrder);
+    };
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {isLoading && <ActivityIndicator size="large" color={COLORS.black} />}
+      </View>
+    );
+  }
+
   return (
     <View
       style={{
@@ -64,6 +117,7 @@ function mapStateToProps(state) {
   return {
     pastOrders: state.orderReducer.pastOrders,
     myCart: state.cartReducer.cart,
+    cartTotal: state.cartReducer.cartTotal,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -76,6 +130,9 @@ function mapDispatchToProps(dispatch) {
     },
     setUpdateCart: (cart) => {
       return dispatch(setUpdateCart(cart));
+    },
+    setClearCart: () => {
+      return dispatch(setClearCart());
     },
   };
 }

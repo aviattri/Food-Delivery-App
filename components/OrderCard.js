@@ -58,11 +58,11 @@ const OrderCard = ({
         </Text>
         <Text
           style={{
-            color: orderStatus == "delivered" ? COLORS.green : COLORS.red,
+            color: orderStatus == "DELIVERED" ? COLORS.green : COLORS.red,
             ...FONTS.body4,
           }}
         >
-          {orderStatus == "delivered"
+          {orderStatus == "DELIVERED"
             ? `● Order Delivered`
             : "● Order Cancelled"}
         </Text>
