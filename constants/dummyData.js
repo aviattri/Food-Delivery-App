@@ -63,6 +63,51 @@ const ratings = [
   },
 ];
 
+const resturants = [
+  {
+    id: 1,
+    name: "Pizza Deli",
+    distance: "1km",
+    icon: require("../assets/dummyData/deli.png"),
+  },
+  {
+    id: 2,
+    name: "Bubble Tea Panda",
+    distance: "1km",
+    icon: require("../assets/dummyData/bubble_tea.png"),
+  },
+  {
+    id: 3,
+    name: "Chinese Kitchen",
+    distance: "2km",
+    icon: require("../assets/dummyData/chinese.png"),
+  },
+  {
+    id: 4,
+    name: "Italian",
+    distance: "1km",
+    icon: require("../assets/dummyData/italian.png"),
+  },
+  {
+    id: 5,
+    name: "Fast Food Kitchen",
+    distance: "1km",
+    icon: require("../assets/dummyData/FFR.png"),
+  },
+  {
+    id: 6,
+    name: "Pupkin Cafe",
+    distance: "1km",
+    icon: require("../assets/dummyData/pumpkin.png"),
+  },
+  {
+    id: 7,
+    name: "Japense",
+    distance: "1km",
+    icon: require("../assets/dummyData/ramen.png"),
+  },
+];
+
 const hamburger = {
   id: 1,
   name: "Hamburger",
@@ -72,6 +117,7 @@ const hamburger = {
   calories: 78,
   isFavourite: false,
   image: require("../assets/dummyData/hamburger.png"),
+  resturants: resturants[0],
 };
 
 const hotTacos = {
@@ -83,6 +129,7 @@ const hotTacos = {
   calories: 78,
   isFavourite: false,
   image: require("../assets/dummyData/hot_tacos.png"),
+  resturants: resturants[1],
 };
 
 const vegBiryani = {
@@ -95,6 +142,7 @@ const vegBiryani = {
   calories: 78,
   isFavourite: false,
   image: require("../assets/dummyData/veg_biryani.png"),
+  resturants: resturants[3],
 };
 
 const wrapSandwich = {
@@ -106,6 +154,7 @@ const wrapSandwich = {
   calories: 78,
   isFavourite: false,
   image: require("../assets/dummyData/wrap_sandwich.png"),
+  resturants: resturants[4],
 };
 
 const indian = {
@@ -117,6 +166,31 @@ const indian = {
   calories: 300,
   isFavourite: false,
   image: require("../assets/dummyData/butter_chicken.png"),
+  resturants: resturants[5],
+};
+
+const ramen = {
+  id: 6,
+  name: "RaRa Ramen",
+  description: "Crazy Spicy Ramen that will melt in your mout",
+  categories: [1, 2],
+  price: 12.99,
+  calories: 300,
+  isFavourite: false,
+  image: require("../assets/dummyData/ramen.png"),
+  resturants: resturants[6],
+};
+
+const friedChicken = {
+  id: 7,
+  name: "Fried Chicken",
+  description: "KFC ",
+  categories: [1, 2, 3],
+  price: 12.99,
+  calories: 300,
+  isFavourite: false,
+  image: require("../assets/dummyData/ramen.png"),
+  resturants: resturants[6],
 };
 
 const products = [hamburger, hotTacos, vegBiryani, wrapSandwich, indian];
@@ -130,7 +204,7 @@ const menu = [
   {
     id: 2,
     name: "Nearby you",
-    list: [hamburger, vegBiryani, wrapSandwich, indian],
+    list: [hamburger, vegBiryani, wrapSandwich, indian, ramen],
   },
   {
     id: 3,
@@ -145,7 +219,7 @@ const menu = [
   {
     id: 5,
     name: "Trending",
-    list: [hamburger, vegBiryani, wrapSandwich, indian],
+    list: [hamburger, vegBiryani, wrapSandwich, indian, ramen],
   },
   {
     id: 6,
@@ -197,21 +271,6 @@ const allCards = [
   },
 ];
 
-const resturants = [
-  {
-    id: 1,
-    name: "Pizza Deli",
-    distance: "1km",
-    icon: require("../assets/dummyData/deli.png"),
-  },
-  {
-    id: 2,
-    name: "Taco Bell",
-    distance: "1km",
-    icon: require("../assets/dummyData/deli.png"),
-  },
-];
-
 const fromLocs = [
   {
     latitude: 1.5347282806345879,
@@ -249,4 +308,5 @@ export default {
   fromLocs,
   products,
   resturants,
+  ramen,
 };

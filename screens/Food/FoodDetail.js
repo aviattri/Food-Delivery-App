@@ -45,14 +45,12 @@ const FoodDetail = ({
   const [foodSize, setFoodSize] = useState("");
   const [stepperValue, setStepperValue] = useState(0);
   const [favourite, setFavourite] = useState(false);
-  const [restaurantDetails, setRestaurantDetails] = useState(
-    dummyData.resturants[0]
-  );
+  const [restaurantDetails, setRestaurantDetails] = useState("");
 
   const { foodDetail } = route.params;
-
   // console.log(foodDetail);
   useEffect(() => {
+    setRestaurantDetails(foodDetail.resturants);
     let isFav = favourites?.find((item, index) => item.name == foodDetail.name);
     if (isFav) {
       setFavourite(true);
