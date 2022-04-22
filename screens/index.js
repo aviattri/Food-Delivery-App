@@ -23,6 +23,8 @@ import MyOrders from "./OrderHistory/MyOrders";
 import MyWallet from "./MyCard/MyWallet";
 import RateOrder from "./OrderHistory/RateOrder";
 import MyCoupons from "./Coupons/MyCoupons";
+import Settings from "./Settings/Settings";
+
 export {
   OnBoarding,
   Home,
@@ -47,4 +49,5 @@ export {
   MyWallet,
   RateOrder,
   MyCoupons,
+  Settings,
 };

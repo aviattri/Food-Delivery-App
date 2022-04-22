@@ -38,6 +38,7 @@ const MyCart = ({
     //cal subtotal
     cart.map((item, index) => (price = price + item.price));
     setSubTotal(price);
+
     //cal total
     totalPrice = price + shippingFess;
     setTotal(totalPrice);
@@ -46,13 +47,6 @@ const MyCart = ({
   useEffect(() => {
     setMyCartList(myCart);
     calculateSubtotal(myCart);
-
-    //navigate user back if the cart is empty
-    // if (myCart.length == 0) {
-    //   Alert.alert("Empty Cart", "Your cart is now empty, keep browsing", [
-    //     { text: "OK", onPress: () => navigation.goBack() },
-    //   ]);
-    // }
   }, [myCart]);
 
   const removeFoodItem = (id) => {
@@ -205,9 +199,10 @@ const MyCart = ({
         }}
       >
         <FooterTotal
+          disable={subTotal == 0}
           subTotal={subTotal ?? 0}
-          shippingFess={shippingFess}
-          total={total ?? 0}
+          shippingFess={subTotal == 0 ? 0 : shippingFess}
+          total={subTotal > 0 ? total : 0}
           onPress={() => {
             //dispatch
             setCartTotal({

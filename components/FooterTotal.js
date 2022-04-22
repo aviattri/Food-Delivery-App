@@ -5,7 +5,7 @@ import { COLORS, FONTS, SIZES } from "../constants";
 import LineDivider from "./LineDivider";
 import TextButton from "./TextButton";
 
-const FooterTotal = ({ subTotal, shippingFess, total, onPress }) => {
+const FooterTotal = ({ subTotal, shippingFess, total, onPress, disable }) => {
   return (
     <View>
       {/* Shadow */}
@@ -45,7 +45,7 @@ const FooterTotal = ({ subTotal, shippingFess, total, onPress }) => {
         </View>
         {/* Shipping Fee */}
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ ...FONTS.body3 }}>Shipping fes</Text>
+          <Text style={{ ...FONTS.body3 }}>Delivery fees</Text>
           <Text style={{ ...FONTS.h3 }}>{`$${shippingFess.toFixed(2)}`}</Text>
         </View>
         {/* LineDivider */}
@@ -65,9 +65,11 @@ const FooterTotal = ({ subTotal, shippingFess, total, onPress }) => {
         </View>
         {/* PayButton */}
         <TextButton
+          disabled={disable}
           buttonContainerStyle={{
             marginTop: SIZES.padding * 2,
             borderRadius: SIZES.radius,
+            backgroundColor: disable ? COLORS.gray : COLORS.primary,
             height: 60,
           }}
           label={"Place your order"}

@@ -2,6 +2,8 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS, FONTS } from "../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { AntDesign } from "@expo/vector-icons";
 
 const TextIconButton = ({
   containerStyle,
@@ -10,6 +12,7 @@ const TextIconButton = ({
   icon,
   iconPosition,
   iconStyle,
+  expoIcon,
   onPress,
 }) => {
   return (
@@ -22,15 +25,18 @@ const TextIconButton = ({
       }}
       onPress={onPress}
     >
-      {iconPosition == "LEFT" && (
+      {iconPosition == "LEFT" && !expoIcon && (
         <Image
           source={icon}
           resizeMode="contain"
           style={{ ...styles.image, ...iconStyle }}
         />
       )}
+      {iconPosition == "LEFT" && expoIcon && (
+        <AntDesign name={icon} size={25} color={COLORS.primary} />
+      )}
       <Text style={{ ...FONTS.body3, ...labelStyle }}>{label}</Text>
-      {iconPosition == "RIGHT" && (
+      {iconPosition == "RIGHT" && !expoIcon && (
         <Image
           source={icon}
           resizeMode="contain"
