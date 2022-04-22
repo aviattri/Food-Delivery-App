@@ -3,6 +3,7 @@ import * as pastOrderActionTypes from "./orderActions";
 const intialState = {
   currentOrders: [],
   pastOrders: [],
+  deliveryStage: 0,
 };
 
 const OrderReduer = (state = intialState, action) => {
@@ -35,6 +36,12 @@ const OrderReduer = (state = intialState, action) => {
       return {
         ...state,
         pastOrders: updatedHistory,
+      };
+    }
+    case pastOrderActionTypes.DELIVERY_STAGE: {
+      return {
+        ...state,
+        deliveryStage: action.payload.stage,
       };
     }
     default:

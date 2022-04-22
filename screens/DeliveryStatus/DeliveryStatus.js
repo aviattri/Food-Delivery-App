@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import React from "react";
 import LottieView from "lottie-react-native";
 import {
@@ -19,7 +19,10 @@ import {
 
 import { connect } from "react-redux";
 import { setClearCart } from "../../store/cart/cartActions";
-import { setPastOrder, setUpdateOrder } from "../../store/orders/orderActions";
+import {
+  setUpdateOrder,
+  setDeliveryStage,
+} from "../../store/orders/orderActions";
 
 import { ScrollView } from "react-native-gesture-handler";
 import curretDate from "../../utils/currentTime";
@@ -27,8 +30,13 @@ import curretDate from "../../utils/currentTime";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+const DeliveryStatus = ({
+  navigation,
+  setUpdateOrder,
+  pastOrders,
+  deliveryStage,
+  setDeliveryStage,
+}) => {
   const [deliveryStatus, setDeliveryStatus] = useState(false);
 
   function cancelOrder() {
@@ -36,33 +44,49 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
       orderCalledByUser: true,
       deliveryTime: curretDate,
     });
-
+    //dispatch delivery state change
+    setDeliveryStage(0);
     navigation.navigate("Home");
   }
 
   useEffect(() => {
+    let dilveryTime = "";
     //setDeliveryStatus
     let orderStatus =
       pastOrders[pastOrders.length - 1].orderStatus == "DELIVERED" ||
       pastOrders[pastOrders.length - 1].orderStatus == "CANCELED";
     setDeliveryStatus(orderStatus);
 
-    let dilveryTime = setTimeout(() => {
-      if (currentStep <= 4) {
-        setCurrentStep(currentStep + 1);
-      }
-    }, 10000);
+    //start timer if the order is active
+    if (pastOrders[pastOrders.length - 1].orderStatus == "ACTIVE") {
+      dilveryTime = setTimeout(() => {
+        if (deliveryStage <= 4) {
+          // setCurrentStep(currentStep + 1);
+          //dispatch delivery state change
+          setDeliveryStage(deliveryStage + 1);
+        }
+      }, 11000);
+    }
 
     //if order is delivered
-    if (currentStep == 3) {
-      // change delivery status
+    if (deliveryStage == 3) {
+      // add delivery time
       setUpdateOrder({ deliveryTime: curretDate });
     }
+
+    //if order is delivered
+    if (deliveryStage == 4) {
+      Alert.alert("Enjoy", "Your delivery was right on time", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+      // add delivery time
+      setDeliveryStage(0);
+    }
+
     return () => {
-      console.log(pastOrders);
       clearTimeout(dilveryTime);
     };
-  }, [currentStep, deliveryStatus]);
+  }, [deliveryStatus, deliveryStage]);
 
   function renderHeader() {
     return (
@@ -117,6 +141,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
       </View>
     );
   }
+
   function renderTrackOrder() {
     return (
       <View
@@ -175,7 +200,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
                       height: 40,
                       width: 40,
                       tintColor:
-                        index <= currentStep
+                        index <= deliveryStage
                           ? COLORS.primary
                           : COLORS.lightGray1,
                     }}
@@ -193,7 +218,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
                 </View>
                 {index < constants.track_order_status.length - 1 && (
                   <View>
-                    {index < currentStep && (
+                    {index < deliveryStage && (
                       <View
                         style={{
                           height: 50,
@@ -204,7 +229,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
                         }}
                       />
                     )}
-                    {index >= currentStep && (
+                    {index >= deliveryStage && (
                       <Image
                         source={icons.dotted_line}
                         resizeMode="cover"
@@ -234,7 +259,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
         }}
       >
         {/* if order is confirmed but not prepared */}
-        {currentStep == 0 && (
+        {deliveryStage == 0 && (
           <TextButton
             buttonContainerStyle={{
               height: 55,
@@ -251,7 +276,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
           />
         )}
         {/* delivering... if order is confirmed and prepared */}
-        {currentStep != 0 && currentStep <= 3 && (
+        {deliveryStage != 0 && deliveryStage < 3 && (
           <View
             style={{
               flexDirection: "row",
@@ -306,7 +331,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
           </View>
         )}
         {/*delivered...  */}
-        {currentStep != 0 && currentStep > 4 && (
+        {deliveryStage != 0 && deliveryStage >= 3 && (
           <TextButton
             buttonContainerStyle={{
               height: 55,
@@ -321,7 +346,7 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
             }}
             onPress={() => {
               //dispatch
-              setClearCart();
+
               navigation.navigate("Home");
             }}
           />
@@ -387,12 +412,16 @@ const DeliveryStatus = ({ navigation, setUpdateOrder, pastOrders }) => {
 function mapStateToProps(state) {
   return {
     pastOrders: state.orderReducer.pastOrders,
+    deliveryStage: state.orderReducer.deliveryStage,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     setUpdateOrder: (deliveryDetails) => {
       return dispatch(setUpdateOrder(deliveryDetails));
+    },
+    setDeliveryStage: (stage) => {
+      return dispatch(setDeliveryStage(stage));
     },
   };
 }
