@@ -347,6 +347,8 @@ const Home = ({ navigation, setProducts, favourites }) => {
                 marginTop: 20,
                 height: 110,
                 width: 100,
+                marginHorizontal: SIZES.radius,
+                borderRadius: SIZES.padding,
               }}
               item={item}
               onPress={() =>

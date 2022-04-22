@@ -106,6 +106,12 @@ const resturants = [
     distance: "1km",
     icon: require("../assets/dummyData/ramen.png"),
   },
+  {
+    id: 8,
+    name: "Macdonalds",
+    distance: "1km",
+    icon: require("../assets/dummyData/maccas.png"),
+  },
 ];
 
 const hamburger = {
@@ -172,39 +178,73 @@ const indian = {
 const ramen = {
   id: 6,
   name: "RaRa Ramen",
-  description: "Crazy Spicy Ramen that will melt in your mout",
+  description:
+    "House made pork Tonkotsu broth with shio tare. Topped with coal grilled free range chashu (braised pork belly), seasoned bamboo, free range ajitsuke tamago (seasoned egg), shallots, shredded black fungus with the addition of mayu (black garlic oil). Burnt garlic flavour with a unique sweet and slightly smokey profile. Served with our house made thin Hakata noodles.",
   categories: [1, 2],
   price: 12.99,
   calories: 300,
   isFavourite: false,
-  image: require("../assets/dummyData/ramen.png"),
+  image: require("../assets/dummyData/rramen.png"),
   resturants: resturants[6],
 };
 
-const friedChicken = {
+const cafeBonito = {
   id: 7,
-  name: "Fried Chicken",
-  description: "KFC ",
+  name: "Eggs Benidict",
+  description: "Amazing egg bendicts done right",
   categories: [1, 2, 3],
   price: 12.99,
   calories: 300,
   isFavourite: false,
-  image: require("../assets/dummyData/ramen.png"),
+  image: require("../assets/dummyData/cafe.png"),
   resturants: resturants[6],
 };
 
-const products = [hamburger, hotTacos, vegBiryani, wrapSandwich, indian];
+const rara2 = {
+  id: 8,
+  name: "Chicken Karaage Mazesoba",
+  description:
+    "Thick chewy noodles tossed with shoyu tare and truffle oil. Topped with crunchy juicy chicken karaage, seaweed, bean sprouts, house made truffle mayonnaise, onsen egg, chopped red onion, corn and parmesan cheese.",
+  categories: [1, 3],
+  price: 14.99,
+  calories: 1111,
+  isFavourite: false,
+  image: require("../assets/dummyData/rramen2.png"),
+  resturants: resturants[6],
+};
+
+const maccas = {
+  id: 9,
+  name: "Maccas",
+  description: "Nuggets for life get them right now",
+  categories: [1, 3],
+  price: 14.99,
+  calories: 1111,
+  isFavourite: false,
+  image: require("../assets/dummyData/maccas.png"),
+  resturants: resturants[7],
+};
+
+const products = [
+  hamburger,
+  hotTacos,
+  vegBiryani,
+  wrapSandwich,
+  indian,
+  rara2,
+  maccas,
+];
 
 const menu = [
   {
     id: 1,
     name: "Featured",
-    list: [hamburger, hotTacos, vegBiryani, indian],
+    list: [hamburger, hotTacos, vegBiryani, indian, cafeBonito, maccas],
   },
   {
     id: 2,
     name: "Nearby you",
-    list: [hamburger, vegBiryani, wrapSandwich, indian, ramen],
+    list: [hamburger, vegBiryani, wrapSandwich, indian, cafeBonito, rara2],
   },
   {
     id: 3,
@@ -214,12 +254,12 @@ const menu = [
   {
     id: 4,
     name: "Newest",
-    list: [hamburger, hotTacos, vegBiryani, indian],
+    list: [hamburger, hotTacos, vegBiryani, cafeBonito],
   },
   {
     id: 5,
     name: "Trending",
-    list: [hamburger, vegBiryani, wrapSandwich, indian, ramen],
+    list: [hamburger, vegBiryani, wrapSandwich, indian, maccas, ramen],
   },
   {
     id: 6,

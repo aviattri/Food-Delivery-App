@@ -27,7 +27,7 @@ import { useEffect } from "react";
 
 const MyOrders = ({ navigation, orderHistory }) => {
   const [pastOrders, setPastOrders] = useState(orderHistory);
-  const [selectedButton, setSelectedButton] = useState(0);
+  const [selectedButton, setSelectedButton] = useState("");
   const [orderCardSelectedButton, setOrderCardSelectedButton] = useState(0);
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
       </View>
     );
   }
-  function renderOrderCardFooter() {
+  function renderOrderCardFooter(selectedCard) {
     return (
       <View style={{ flex: 1, flexDirection: "row", paddingTop: SIZES.radius }}>
         {/* Re Oreder */}
@@ -135,7 +135,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
             color: orderCardSelectedButton == 0 ? COLORS.white : COLORS.primary,
           }}
           onPress={() => {
-            setOrderCardSelectedButton(0);
+            setOrderCardSelectedButton(selectedCard);
           }}
         />
         {/* Rate Order */}
@@ -199,7 +199,9 @@ const MyOrders = ({ navigation, orderHistory }) => {
               >
                 {/* OrderDetails */}
                 <OrderCard
-                  restarauntImage={icons.calories}
+                  restarauntImage={
+                    item?.orderDetails[0]?.restaurantDetails?.icon
+                  }
                   restarauntName={
                     item?.orderDetails[0]?.restaurantDetails?.name
                   }
@@ -211,7 +213,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
                   orderStatus={item.orderStatus}
                 />
                 {/* Reorder and Rate buttons */}
-                {renderOrderCardFooter()}
+                {renderOrderCardFooter(index)}
               </View>
             </>
           )}
