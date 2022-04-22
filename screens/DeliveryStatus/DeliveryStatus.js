@@ -1,14 +1,7 @@
 import { View, Text, Image, Alert } from "react-native";
 import React from "react";
 import LottieView from "lottie-react-native";
-import {
-  COLORS,
-  constants,
-  dummyData,
-  FONTS,
-  icons,
-  SIZES,
-} from "../../constants";
+import { COLORS, constants, FONTS, icons, SIZES } from "../../constants";
 import {
   Header,
   IconButton,
@@ -18,7 +11,6 @@ import {
 } from "../../components";
 
 import { connect } from "react-redux";
-import { setClearCart } from "../../store/cart/cartActions";
 import {
   setUpdateOrder,
   setDeliveryStage,

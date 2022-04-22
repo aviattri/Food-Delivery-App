@@ -228,33 +228,93 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
           }
           renderItem={({ item, index }) => (
             <>
-              <View
-                style={{
-                  backgroundColor: COLORS.lightGray2,
-                  marginTop: SIZES.radius,
-                  paddingHorizontal: SIZES.radius,
-                  paddingVertical: SIZES.radius,
-                  borderRadius: SIZES.radius,
-                }}
-              >
-                {/* OrderDetails */}
-                <OrderCard
-                  restarauntImage={
-                    item.orderDetails[0]?.restaurantDetails?.icon
-                  }
-                  restarauntName={
-                    item?.orderDetails[0]?.restaurantDetails?.name
-                  }
-                  orderTotal={`$${item?.orderTotal?.orderPrice?.total.toFixed(
-                    2
-                  )}`}
-                  orderTime={item.deliveryDetails.deliveryTime}
-                  orderItems={item?.orderDetails.length}
-                  orderStatus={item.orderStatus}
-                />
-                {/* Reorder and Rate buttons */}
-                {renderOrderCardFooter(index, item)}
-              </View>
+              {item.orderStatus == "DELIVERED" && (
+                <View
+                  style={{
+                    backgroundColor: COLORS.lightGray2,
+                    marginTop: SIZES.radius,
+                    paddingHorizontal: SIZES.radius,
+                    paddingVertical: SIZES.radius,
+                    borderRadius: SIZES.radius,
+                  }}
+                >
+                  {/* OrderDetails */}
+                  <OrderCard
+                    restarauntImage={
+                      item.orderDetails[0]?.restaurantDetails?.icon
+                    }
+                    restarauntName={
+                      item?.orderDetails[0]?.restaurantDetails?.name
+                    }
+                    orderTotal={`$${item?.orderTotal?.orderPrice?.total.toFixed(
+                      2
+                    )}`}
+                    orderTime={item?.deliveryDetails?.deliveryTime ?? 0}
+                    orderItems={item?.orderDetails.length}
+                    orderStatus={item.orderStatus}
+                  />
+                  {/* Reorder and Rate buttons */}
+                  {renderOrderCardFooter(index, item)}
+                </View>
+              )}
+            </>
+          )}
+        />
+      </View>
+    );
+  }
+  function renderUpcomingOrders() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding * 3,
+          height: "100%",
+        }}
+      >
+        <Text
+          style={{
+            color: COLORS.gray,
+          }}
+        ></Text>
+        <FlatList
+          data={pastOrders}
+          keyExtractor={(item, index) => `order-${index}`}
+          vertical
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={
+            <View style={{ height: 200, marginBottom: SIZES.radius }}></View>
+          }
+          renderItem={({ item, index }) => (
+            <>
+              {item.orderStatus == "ACTIVE" && (
+                <View
+                  style={{
+                    backgroundColor: COLORS.lightGray2,
+                    marginTop: SIZES.radius,
+                    paddingHorizontal: SIZES.radius,
+                    paddingVertical: SIZES.radius,
+                    borderRadius: SIZES.radius,
+                  }}
+                >
+                  {/* OrderDetails */}
+                  <OrderCard
+                    restarauntImage={
+                      item.orderDetails[0]?.restaurantDetails?.icon
+                    }
+                    restarauntName={
+                      item?.orderDetails[0]?.restaurantDetails?.name
+                    }
+                    orderTotal={`$${item?.orderTotal?.orderPrice?.total.toFixed(
+                      2
+                    )}`}
+                    orderTime={item?.deliveryDetails?.deliveryTime ?? 0}
+                    orderItems={item?.orderDetails.length}
+                    orderStatus={item.orderStatus}
+                  />
+                  {/* Reorder and Rate buttons */}
+                  {renderOrderCardFooter(index, item)}
+                </View>
+              )}
             </>
           )}
         />
@@ -274,7 +334,9 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
       {/* Top Buttons */}
       {renderTopButtons()}
       {/* Order History */}
-      {renderOrderHistory()}
+      {selectedButton == 0 && renderOrderHistory()}
+      {/* upcoming orders */}
+      {selectedButton == 1 && renderUpcomingOrders()}
     </View>
   );
 };
