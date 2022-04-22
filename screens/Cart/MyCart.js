@@ -26,7 +26,7 @@ const MyCart = ({
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [shippingFess, setShippingFess] = useState(3.4);
-
+  console.log(myCart);
   const updateQuanityHandler = (newQty, id, newPrice) => {
     const newMyCartList = myCartList.map((cl) =>
       cl.id === id ? setCartItem({ ...cl, qty: newQty, price: newPrice }) : cl

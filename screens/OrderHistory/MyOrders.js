@@ -19,13 +19,12 @@ import {
 } from "../../components";
 
 import { connect } from "react-redux";
-import { setPastOrder } from "../../store/orders/orderActions";
+import { setCartItem } from "../../store/cart/cartActions";
 
-import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const MyOrders = ({ navigation, orderHistory }) => {
+const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
   const [pastOrders, setPastOrders] = useState(orderHistory);
   const [selectedButton, setSelectedButton] = useState("");
   const [orderCardSelectedButton, setOrderCardSelectedButton] = useState(0);
@@ -115,7 +114,8 @@ const MyOrders = ({ navigation, orderHistory }) => {
       </View>
     );
   }
-  function renderOrderCardFooter(selectedCard) {
+  function renderOrderCardFooter(selectedCard, item) {
+    // console.log(item);
     return (
       <View style={{ flex: 1, flexDirection: "row", paddingTop: SIZES.radius }}>
         {/* Re Oreder */}
@@ -127,15 +127,24 @@ const MyOrders = ({ navigation, orderHistory }) => {
             borderColor: COLORS.gray2,
             marginHorizontal: SIZES.radius,
             backgroundColor:
-              orderCardSelectedButton == 0 ? COLORS.primary : COLORS.lightGray2,
+              orderCardSelectedButton == `index-${selectedCard}_re-order`
+                ? COLORS.primary
+                : COLORS.lightOrange3,
           }}
           label={"Re-Order"}
           labelStyle={{
             paddingHorizontal: SIZES.padding,
-            color: orderCardSelectedButton == 0 ? COLORS.white : COLORS.primary,
+            color:
+              orderCardSelectedButton == `index-${selectedCard}_re-order`
+                ? COLORS.white
+                : COLORS.orange,
           }}
           onPress={() => {
-            setOrderCardSelectedButton(selectedCard);
+            setOrderCardSelectedButton(`index-${selectedCard}_re-order`);
+            //dispatch the order to my cart
+            setCartItem(item.orderDetails[0]);
+            //navigate to MyCart
+            navigation.navigate("MyCart");
           }}
         />
         {/* Rate Order */}
@@ -147,17 +156,20 @@ const MyOrders = ({ navigation, orderHistory }) => {
             borderColor: COLORS.gray2,
             marginHorizontal: SIZES.radius,
             backgroundColor:
-              orderCardSelectedButton == 1
+              orderCardSelectedButton == `index-${selectedCard}_rate-order`
                 ? COLORS.primary
                 : COLORS.lightOrange3,
           }}
           label={"Rate"}
           labelStyle={{
             paddingHorizontal: SIZES.padding,
-            color: orderCardSelectedButton == 1 ? COLORS.white : COLORS.orange,
+            color:
+              orderCardSelectedButton == `index-${selectedCard}_rate-order`
+                ? COLORS.white
+                : COLORS.orange,
           }}
           onPress={() => {
-            setOrderCardSelectedButton(1);
+            setOrderCardSelectedButton(`index-${selectedCard}_rate-order`);
           }}
         />
       </View>
@@ -200,7 +212,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
                 {/* OrderDetails */}
                 <OrderCard
                   restarauntImage={
-                    item?.orderDetails[0]?.restaurantDetails?.icon
+                    item.orderDetails[0]?.restaurantDetails?.icon
                   }
                   restarauntName={
                     item?.orderDetails[0]?.restaurantDetails?.name
@@ -213,7 +225,7 @@ const MyOrders = ({ navigation, orderHistory }) => {
                   orderStatus={item.orderStatus}
                 />
                 {/* Reorder and Rate buttons */}
-                {renderOrderCardFooter(index)}
+                {renderOrderCardFooter(index, item)}
               </View>
             </>
           )}
@@ -241,15 +253,15 @@ const MyOrders = ({ navigation, orderHistory }) => {
 
 function mapStateToProps(state) {
   return {
-    // myCart: state.cartReducer.cart,
+    myCart: state.cartReducer.cart,
     orderHistory: state.orderReducer.pastOrders,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    // setClearCart: () => {
-    //   return dispatch(setClearCart());
-    // },
+    setCartItem: (foodItem) => {
+      return dispatch(setCartItem(foodItem));
+    },
   };
 }
 
