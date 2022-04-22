@@ -169,6 +169,10 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
                   "Are you sure you want to reorder this transaction",
                   [
                     {
+                      text: "Cancel",
+                      onPress: () => "",
+                    },
+                    {
                       text: "Confirm",
                       onPress: () => reorderItems(selectedCard, item),
                     },
@@ -230,7 +234,7 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
           }
           renderItem={({ item, index }) => (
             <>
-              {item.orderStatus == "DELIVERED" && (
+              {item.orderStatus != "ACTIVE" && (
                 <View
                   style={{
                     backgroundColor: COLORS.lightGray2,

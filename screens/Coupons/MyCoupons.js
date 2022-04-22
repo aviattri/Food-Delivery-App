@@ -4,7 +4,7 @@ import { Header, IconButton, OrderCard, TextButton } from "../../components";
 import { CouponLayout } from "../../components";
 import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
 import { useState } from "react";
-const MyCoupons = () => {
+const MyCoupons = ({ navigation }) => {
   const [selectedButton, setSelectedButton] = useState("");
 
   function renderHeader() {

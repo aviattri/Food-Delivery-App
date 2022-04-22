@@ -44,21 +44,28 @@ const DeliveryStatus = ({
   useEffect(() => {
     let dilveryTime = "";
     //setDeliveryStatus
-    let orderStatus =
-      pastOrders[pastOrders.length - 1].orderStatus == "DELIVERED" ||
-      pastOrders[pastOrders.length - 1].orderStatus == "CANCELED";
-    setDeliveryStatus(orderStatus);
+    let orderStatus = "";
 
-    //start timer if the order is active
-    if (pastOrders[pastOrders.length - 1].orderStatus == "ACTIVE") {
-      dilveryTime = setTimeout(() => {
-        if (deliveryStage <= 4) {
-          // setCurrentStep(currentStep + 1);
-          //dispatch delivery state change
-          setDeliveryStage(deliveryStage + 1);
-        }
-      }, 11000);
+    if (pastOrders && pastOrders.length) {
+      orderStatus =
+        pastOrders[pastOrders?.length - 1].orderStatus == "DELIVERED" ||
+        pastOrders[pastOrders?.length - 1].orderStatus == "CANCELED";
+
+      //start timer if the order is active
+      if (pastOrders[pastOrders?.length - 1].orderStatus == "ACTIVE") {
+        dilveryTime = setTimeout(() => {
+          if (deliveryStage <= 4) {
+            // setCurrentStep(currentStep + 1);
+            //dispatch delivery state change
+            setDeliveryStage(deliveryStage + 1);
+          }
+        }, 11000);
+      }
+    } else {
+      orderStatus = true;
     }
+
+    setDeliveryStatus(orderStatus);
 
     //if order is delivered
     if (deliveryStage == 3) {
@@ -69,11 +76,15 @@ const DeliveryStatus = ({
     //if order is delivered
     if (deliveryStage == 4) {
       Alert.alert("Enjoy", "Your delivery was right on time", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
+        {
+          text: "OK",
+          onPress: () =>
+            // add delivery time
+            setDeliveryStage(0),
+        },
       ]);
-      // add delivery time
-      setDeliveryStage(0);
     }
+    console.log(deliveryStatus);
 
     return () => {
       clearTimeout(dilveryTime);
@@ -338,7 +349,8 @@ const DeliveryStatus = ({
             }}
             onPress={() => {
               //dispatch
-
+              // add delivery time
+              setDeliveryStage(0);
               navigation.navigate("Home");
             }}
           />
