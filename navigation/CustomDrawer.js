@@ -189,7 +189,7 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             isFocused={selectedTab == constants.screens.coupon}
             onPress={() => {
               setSelectedTab(constants.screens.coupon);
-              navigation.navigate("MainLayout");
+              navigation.navigate("MyCoupons");
             }}
           />
 

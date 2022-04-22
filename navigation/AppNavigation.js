@@ -22,6 +22,7 @@ import {
   MyOrders,
   MyWallet,
   RateOrder,
+  MyCoupons,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -148,6 +149,13 @@ const AppNavigation = () => {
               }}
               name="RateOrder"
               component={RateOrder}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MyCoupons"
+              component={MyCoupons}
             />
           </>
         )}

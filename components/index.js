@@ -19,7 +19,7 @@ import FormInputCheck from "./FormInputCheck";
 import RadioButton from "./RadioButton";
 import FooterTotal from "./FooterTotal";
 import OrderCard from "./OrderCard";
-
+import CouponLayout from "./CouponLayout";
 export {
   TabButton,
   TextButton,
@@ -42,4 +42,5 @@ export {
   RadioButton,
   FooterTotal,
   OrderCard,
+  CouponLayout,
 };

@@ -153,7 +153,7 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
                 ? COLORS.primary
                 : COLORS.lightOrange3,
           }}
-          label={"Re-Order"}
+          label={item.orderStatus == "ACTIVE" ? "Track Order" : "Re-Order"}
           labelStyle={{
             paddingHorizontal: SIZES.padding,
             color:
@@ -161,18 +161,20 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
                 ? COLORS.white
                 : COLORS.orange,
           }}
-          onPress={() =>
-            Alert.alert(
-              "Note",
-              "Are you sure you want to reorder this transaction",
-              [
-                {
-                  text: "Confirm",
-                  onPress: () => reorderItems(selectedCard, item),
-                },
-              ]
-            )
-          }
+          onPress={() => {
+            item.orderStatus == "ACTIVE"
+              ? navigation.navigate("DeliveryStatus")
+              : Alert.alert(
+                  "Note",
+                  "Are you sure you want to reorder this transaction",
+                  [
+                    {
+                      text: "Confirm",
+                      onPress: () => reorderItems(selectedCard, item),
+                    },
+                  ]
+                );
+          }}
         />
         {/* Rate Order */}
         <TextButton

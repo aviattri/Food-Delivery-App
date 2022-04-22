@@ -22,7 +22,7 @@ import Map from "./Map/Map";
 import MyOrders from "./OrderHistory/MyOrders";
 import MyWallet from "./MyCard/MyWallet";
 import RateOrder from "./OrderHistory/RateOrder";
-
+import MyCoupons from "./Coupons/MyCoupons";
 export {
   OnBoarding,
   Home,
@@ -46,4 +46,5 @@ export {
   MyOrders,
   MyWallet,
   RateOrder,
+  MyCoupons,
 };

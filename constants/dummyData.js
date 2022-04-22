@@ -337,6 +337,51 @@ const fromLocs = [
     longitude: 110.35568783282145,
   },
 ];
+
+const coupons = [
+  {
+    id: 1,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+  {
+    id: 2,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+  {
+    id: 3,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+  {
+    id: 4,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+  {
+    id: 5,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+  {
+    id: 6,
+    logo: require("../assets/dummyData/chinese.png"),
+    name: "Chinese",
+    discountRate: "15% Off",
+    validity: "22 Sep 2029",
+  },
+];
 export default {
   myProfile,
   categories,
@@ -349,4 +394,5 @@ export default {
   products,
   resturants,
   ramen,
+  coupons,
 };
