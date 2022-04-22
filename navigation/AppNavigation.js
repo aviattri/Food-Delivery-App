@@ -21,6 +21,7 @@ import {
   Map,
   MyOrders,
   MyWallet,
+  RateOrder,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -140,6 +141,13 @@ const AppNavigation = () => {
               }}
               name="MyWallet"
               component={MyWallet}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="RateOrder"
+              component={RateOrder}
             />
           </>
         )}

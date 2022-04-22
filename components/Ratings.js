@@ -1,15 +1,18 @@
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS, dummyData, icons, SIZES } from "../constants";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { useState } from "react";
 
 const Ratings = ({
-  rating,
   containerStyle,
   activeColor = COLORS.orange,
   inactiveColor = COLORS.lightOrange3,
   iconStyle,
+  userRatings,
+  setUserRating,
 }) => {
+  const [ratings, setRatings] = useState(userRatings);
+
   return (
     <View
       style={{
@@ -19,15 +22,22 @@ const Ratings = ({
     >
       {dummyData.ratings.map((item, index) => {
         return (
-          <Image
+          <TouchableOpacity
             key={`star-${index}`}
-            source={icons.star}
-            style={{
-              tintColor: rating - 1 >= index ? activeColor : inactiveColor,
-              ...styles.rateIcon,
-              ...iconStyle,
+            onPress={() => {
+              setRatings(index + 1);
+              setUserRating(index + 1);
             }}
-          />
+          >
+            <Image
+              source={icons.star}
+              style={{
+                tintColor: ratings - 1 >= index ? activeColor : inactiveColor,
+                ...styles.rateIcon,
+                ...iconStyle,
+              }}
+            />
+          </TouchableOpacity>
         );
       })}
     </View>

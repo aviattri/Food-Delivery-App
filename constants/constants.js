@@ -166,6 +166,29 @@ const tags = [
   },
 ];
 
+const tips = [
+  {
+    id: 1,
+    label: "No Tips",
+  },
+  {
+    id: 2,
+    label: "$5",
+  },
+  {
+    id: 3,
+    label: "$10",
+  },
+  {
+    id: 4,
+    label: "$15",
+  },
+  {
+    id: 5,
+    label: "$20",
+  },
+];
+
 export default {
   onboarding_screens,
   screens,
@@ -174,4 +197,5 @@ export default {
   track_order_status,
   ratings,
   tags,
+  tips,
 };

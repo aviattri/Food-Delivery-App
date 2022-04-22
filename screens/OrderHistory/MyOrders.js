@@ -1,22 +1,7 @@
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Alert, FlatList, ActivityIndicator } from "react-native";
 import React from "react";
-import LottieView from "lottie-react-native";
-import {
-  COLORS,
-  constants,
-  dummyData,
-  FONTS,
-  icons,
-  SIZES,
-} from "../../constants";
-import {
-  Header,
-  IconButton,
-  LineDivider,
-  OrderCard,
-  TextButton,
-  TextIconButton,
-} from "../../components";
+import { COLORS, FONTS, icons, SIZES } from "../../constants";
+import { Header, IconButton, OrderCard, TextButton } from "../../components";
 
 import { connect } from "react-redux";
 import { setCartItem } from "../../store/cart/cartActions";
@@ -28,10 +13,47 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
   const [pastOrders, setPastOrders] = useState(orderHistory);
   const [selectedButton, setSelectedButton] = useState("");
   const [orderCardSelectedButton, setOrderCardSelectedButton] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setPastOrders(orderHistory);
   }, [pastOrders]);
+
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: null,
+        }}
+      >
+        {isLoading && <ActivityIndicator size="large" color={COLORS.black} />}
+      </View>
+    );
+  }
+
+  function reorderItems(selectedCard, item) {
+    setOrderCardSelectedButton(`index-${selectedCard}_re-order`);
+    //dispatch the order to my cart
+    setCartItem(item.orderDetails[0]);
+
+    // setLoading
+    setIsLoading(true);
+
+    let loadAssets = setTimeout(() => {
+      // navigate to MyCart after loading the order
+      if (!isLoading) {
+        navigation.navigate("MyCart");
+      }
+      setIsLoading(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(loadAssets);
+    };
+  }
 
   function renderHeader() {
     return (
@@ -139,13 +161,18 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
                 ? COLORS.white
                 : COLORS.orange,
           }}
-          onPress={() => {
-            setOrderCardSelectedButton(`index-${selectedCard}_re-order`);
-            //dispatch the order to my cart
-            setCartItem(item.orderDetails[0]);
-            //navigate to MyCart
-            navigation.navigate("MyCart");
-          }}
+          onPress={() =>
+            Alert.alert(
+              "Note",
+              "Are you sure you want to reorder this transaction",
+              [
+                {
+                  text: "Confirm",
+                  onPress: () => reorderItems(selectedCard, item),
+                },
+              ]
+            )
+          }
         />
         {/* Rate Order */}
         <TextButton
@@ -169,6 +196,7 @@ const MyOrders = ({ navigation, orderHistory, setCartItem }) => {
                 : COLORS.orange,
           }}
           onPress={() => {
+            navigation.navigate("RateOrder", { orderDetails: item });
             setOrderCardSelectedButton(`index-${selectedCard}_rate-order`);
           }}
         />
