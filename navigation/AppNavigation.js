@@ -24,6 +24,7 @@ import {
   RateOrder,
   MyCoupons,
   Settings,
+  MyProfile,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -164,6 +165,13 @@ const AppNavigation = () => {
               }}
               name="Settings"
               component={Settings}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="MyProfile"
+              component={MyProfile}
             />
           </>
         )}

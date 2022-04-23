@@ -33,7 +33,7 @@ const TextIconButton = ({
         />
       )}
       {iconPosition == "LEFT" && expoIcon && (
-        <AntDesign name={icon} size={25} color={COLORS.primary} />
+        <AntDesign name={icon} size={25} color={COLORS.orange} />
       )}
       <Text style={{ ...FONTS.body3, ...labelStyle }}>{label}</Text>
       {iconPosition == "RIGHT" && !expoIcon && (

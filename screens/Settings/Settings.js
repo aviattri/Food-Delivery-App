@@ -88,7 +88,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.filter}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -122,7 +122,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.profile}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -139,7 +139,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.help}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -156,7 +156,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.clock}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -174,7 +174,7 @@ const Settings = ({ navigation }) => {
           iconPosition={"LEFT"}
           expoIcon={false}
           icon={icons.call}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -191,7 +191,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.help}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
         <LineDivider
           lineStyle={{
@@ -225,7 +225,7 @@ const Settings = ({ navigation }) => {
           labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
           iconPosition={"LEFT"}
           icon={icons.logout}
-          iconStyle={{ tintColor: COLORS.primary }}
+          iconStyle={{ tintColor: COLORS.orange }}
         />
       </ScrollView>
       {/* Footer  */}
