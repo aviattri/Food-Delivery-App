@@ -345,6 +345,7 @@ const coupons = [
     name: "Hungry Jack",
     discountRate: "15% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
   {
     id: 2,
@@ -352,6 +353,7 @@ const coupons = [
     name: "KFC",
     discountRate: "25% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
   {
     id: 3,
@@ -359,6 +361,7 @@ const coupons = [
     name: "Pizza Hut",
     discountRate: "35% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
   {
     id: 4,
@@ -366,6 +369,7 @@ const coupons = [
     name: "DOMINOS",
     discountRate: "15% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
   {
     id: 5,
@@ -373,6 +377,7 @@ const coupons = [
     name: "Starbucks",
     discountRate: "15% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
   {
     id: 6,
@@ -380,6 +385,7 @@ const coupons = [
     name: "Chinese",
     discountRate: "15% Off",
     validity: "22 Sep 2029",
+    redeemStatus: false,
   },
 ];
 export default {

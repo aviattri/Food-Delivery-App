@@ -15,10 +15,17 @@ import {
 
 import { connect } from "react-redux";
 import { setProducts } from "../../store/products/productActions";
+import { setLoadCoupons } from "../../store/coupons/couponActions";
 
 import FilterModal from "./FilterModal";
 
-const Home = ({ navigation, setProducts, favourites }) => {
+const Home = ({
+  navigation,
+  setProducts,
+  favourites,
+  coupons,
+  setLoadCoupons,
+}) => {
   const [selectedCatergoryId, setSelectedCatergoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
@@ -34,6 +41,11 @@ const Home = ({ navigation, setProducts, favourites }) => {
     //load products to store
     setProducts(dummyData.products);
     handleChangeCategory(selectedCatergoryId, selectedMenuType);
+
+    //load coupons if empty
+    if (!(coupons && coupons.length)) {
+      setLoadCoupons(dummyData.coupons);
+    }
 
     return () => {
       clearTimeout(loadAssets);
@@ -362,15 +374,20 @@ const Home = ({ navigation, setProducts, favourites }) => {
   );
 };
 function mapStateToProps(state) {
+  console.log(state.couponReducer);
   return {
     products: state.productReducer.products,
     favourites: state.favouriteReducer.favourites,
+    coupons: state.couponReducer.coupons,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     setProducts: (products) => {
       return dispatch(setProducts(products));
+    },
+    setLoadCoupons: (coupons) => {
+      return dispatch(setLoadCoupons(coupons));
     },
   };
 }

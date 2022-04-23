@@ -1,11 +1,40 @@
-import { View, Text, FlatList } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Alert,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState } from "react";
 import { Header, IconButton, OrderCard, TextButton } from "../../components";
 import { CouponLayout } from "../../components";
-import { COLORS, dummyData, FONTS, icons, SIZES } from "../../constants";
-import { useState } from "react";
-const MyCoupons = ({ navigation }) => {
+import { COLORS, FONTS, icons, SIZES } from "../../constants";
+
+import { connect } from "react-redux";
+import { setUpdateCoupon } from "../../store/coupons/couponActions";
+import { useEffect } from "react";
+
+const MyCoupons = ({ navigation, setUpdateCoupon, coupons }) => {
   const [selectedButton, setSelectedButton] = useState("");
+  const [couponList, setCouponList] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const showIndicator = () => {
+    setIsLoading(true);
+    let loadAssets = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  useEffect(() => {
+    setCouponList(coupons);
+  }, [coupons]);
+
+  const redeemCoupon = (item) => {
+    showIndicator();
+    setUpdateCoupon({ ...item, redeemStatus: true });
+  };
 
   function renderHeader() {
     return (
@@ -63,6 +92,7 @@ const MyCoupons = ({ navigation }) => {
             color: selectedButton == 0 ? COLORS.white : COLORS.primary,
           }}
           onPress={() => {
+            showIndicator();
             setSelectedButton(0);
           }}
         />
@@ -83,48 +113,153 @@ const MyCoupons = ({ navigation }) => {
             color: selectedButton == 1 ? COLORS.white : COLORS.primary,
           }}
           onPress={() => {
+            showIndicator();
             setSelectedButton(1);
           }}
         />
       </View>
     );
   }
-  function renderCoupons() {
+  function renderUnusedCoupons() {
     return (
       <View style={{ marginTop: SIZES.padding * 2 }}>
         <FlatList
-          data={dummyData.coupons}
+          data={couponList}
           keyExtractor={(item, index) => `coupon-${index}`}
           vertical
           showsVerticalScrollIndicator={false}
           ListFooterComponent={
             <View style={{ height: 200, marginBottom: SIZES.radius }}></View>
           }
-          renderItem={({ item, index }) => (
-            <View style={{ flex: 1, marginTop: SIZES.padding }}>
-              {<CouponLayout coupon={item} />}
-            </View>
-          )}
+          renderItem={({ item, index }) =>
+            !item.redeemStatus && (
+              <TouchableOpacity
+                onPress={() =>
+                  Alert.alert(
+                    "Confirm",
+                    "You are going to redeem this coupon for " + item.name,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => "",
+                        style: "cancel",
+                      },
+                      { text: "OK", onPress: () => redeemCoupon(item) },
+                    ]
+                  )
+                }
+                style={{ flex: 1, marginTop: SIZES.padding }}
+              >
+                {<CouponLayout coupon={item} />}
+              </TouchableOpacity>
+            )
+          }
         />
       </View>
     );
   }
+  function renderUsedCoupons() {
+    return (
+      <View style={{ marginTop: SIZES.padding * 2 }}>
+        <FlatList
+          data={couponList}
+          keyExtractor={(item, index) => `coupon-${index}`}
+          vertical
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={
+            <View style={{ height: 200, marginBottom: SIZES.radius }}></View>
+          }
+          renderItem={({ item, index }) =>
+            item.redeemStatus && (
+              <TouchableOpacity
+                disabled={true}
+                onPress={() =>
+                  Alert.alert(
+                    "Confirm",
+                    "You are going to redeem this coupon for " + item.name,
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => "",
+                        style: "cancel",
+                      },
+                      { text: "OK", onPress: () => redeemCoupon(item) },
+                    ]
+                  )
+                }
+                style={{ flex: 1, marginTop: SIZES.padding }}
+              >
+                {<CouponLayout coupon={item} />}
+              </TouchableOpacity>
+            )
+          }
+        />
+      </View>
+    );
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingHorizontal: SIZES.padding,
-        backgroundColor: COLORS.white,
-      }}
-    >
-      {/* Header */}
-      {renderHeader()}
-      {/* Top Buttons */}
-      {renderTopButtons()}
-      {/* Couponslist */}
-      {renderCoupons()}
-    </View>
+    <>
+      <View
+        style={{
+          flex: 1,
+          paddingHorizontal: SIZES.padding,
+          backgroundColor: COLORS.white,
+        }}
+      >
+        <View
+          style={{
+            marginTop: SIZES.padding,
+            marginBottom: -SIZES.padding,
+            height: "20%",
+            backgroundColor: COLORS.white,
+            flexDirection: "column",
+          }}
+        >
+          {/* Header */}
+          {renderHeader()}
+          {/* Top Buttons */}
+          {renderTopButtons()}
+        </View>
+
+        {/* UnusedCouponslist */}
+        {selectedButton == 0 && renderUnusedCoupons()}
+        {/* UnusedCouponslist */}
+        {selectedButton == 1 && renderUsedCoupons()}
+      </View>
+
+      {/* indicator */}
+      {isLoading && (
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: COLORS.transparentBlack1,
+          }}
+        >
+          {isLoading && <ActivityIndicator size="large" color={COLORS.black} />}
+        </View>
+      )}
+    </>
   );
 };
 
-export default MyCoupons;
+function mapStateToProps(state) {
+  return {
+    coupons: state.couponReducer.coupons,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setUpdateCoupon: (coupon) => {
+      return dispatch(setUpdateCoupon(coupon));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyCoupons);
