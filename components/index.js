@@ -20,6 +20,7 @@ import RadioButton from "./RadioButton";
 import FooterTotal from "./FooterTotal";
 import OrderCard from "./OrderCard";
 import CouponLayout from "./CouponLayout";
+import NotificationItems from "./NotificationItem";
 export {
   TabButton,
   TextButton,
@@ -43,4 +44,5 @@ export {
   FooterTotal,
   OrderCard,
   CouponLayout,
+  NotificationItems,
 };

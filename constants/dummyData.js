@@ -388,6 +388,38 @@ const coupons = [
     redeemStatus: false,
   },
 ];
+
+const notifications = [
+  {
+    id: 1,
+    logo: require("../assets/dummyData/dominos.png"),
+    title: "Dominos Large Traditonal Pizza",
+    description: "2 STANDARD SIDES FROM $8.95 *",
+    time: "a few seconds ago",
+  },
+  {
+    id: 2,
+    logo: require("../assets/dummyData/dominos.png"),
+    title: "Hungry Jacks",
+    description: `1 LARGE TRADITIONAL PIZZA + GARLIC BREAD, 1.25L DRINK FROM $25.95 *`,
+    time: "5 mins ago",
+  },
+  {
+    id: 3,
+    logo: require("../assets/dummyData/dominos.png"),
+    title: "Hungry Jacks",
+    description: `$1.50 Small Sundae via App (until 2 May 2022)`,
+    time: "5 mins ago",
+  },
+  {
+    id: 4,
+    logo: require("../assets/dummyData/starbucks.png"),
+    title: "Starbucks",
+    description: `Tuesdays $9 combo, "Free coffee with pastrey"`,
+    time: "5 mins ago",
+  },
+];
+
 export default {
   myProfile,
   categories,
@@ -401,4 +433,5 @@ export default {
   resturants,
   ramen,
   coupons,
+  notifications,
 };
