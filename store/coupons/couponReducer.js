@@ -26,6 +26,7 @@ const CouponReducer = (state = intialState, action) => {
             ? {
                 ...item,
                 redeemStatus: action.payload.coupon.redeemStatus,
+                redeemedAt: action.payload.coupon.redeemedAt,
               }
             : item
         );

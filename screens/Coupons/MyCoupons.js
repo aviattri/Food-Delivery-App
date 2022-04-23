@@ -14,6 +14,7 @@ import { COLORS, FONTS, icons, SIZES } from "../../constants";
 import { connect } from "react-redux";
 import { setUpdateCoupon } from "../../store/coupons/couponActions";
 import { useEffect } from "react";
+import curretDate from "../../utils/currentTime";
 
 const MyCoupons = ({ navigation, setUpdateCoupon, coupons }) => {
   const [selectedButton, setSelectedButton] = useState("");
@@ -25,6 +26,9 @@ const MyCoupons = ({ navigation, setUpdateCoupon, coupons }) => {
     let loadAssets = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
+    return () => {
+      loadAssets;
+    };
   };
 
   useEffect(() => {
@@ -33,7 +37,7 @@ const MyCoupons = ({ navigation, setUpdateCoupon, coupons }) => {
 
   const redeemCoupon = (item) => {
     showIndicator();
-    setUpdateCoupon({ ...item, redeemStatus: true });
+    setUpdateCoupon({ ...item, redeemStatus: true, redeemedAt: curretDate });
   };
 
   function renderHeader() {
@@ -250,6 +254,7 @@ const MyCoupons = ({ navigation, setUpdateCoupon, coupons }) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state.couponReducer.coupons);
   return {
     coupons: state.couponReducer.coupons,
   };

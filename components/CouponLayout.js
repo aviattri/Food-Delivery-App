@@ -7,7 +7,7 @@ const CouponLayout = ({ coupon }) => {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <View
         style={{
-          width: 350,
+          width: 360,
           height: 130,
           backgroundColor: COLORS.lightGray2,
           borderRadius: 8,
@@ -53,8 +53,9 @@ const CouponLayout = ({ coupon }) => {
         <View
           style={{
             position: "absolute",
+            width: "45%",
             top: 20,
-            right: 50,
+            right: 30,
             flexDirection: "column",
           }}
         >
@@ -75,7 +76,9 @@ const CouponLayout = ({ coupon }) => {
               ...FONTS.body4,
             }}
           >
-            {coupon?.validity}
+            {coupon.redeemStatus
+              ? `Used on ${coupon?.redeemedAt}`
+              : coupon?.validity}
           </Text>
         </View>
 

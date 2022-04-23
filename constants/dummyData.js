@@ -342,9 +342,9 @@ const coupons = [
   {
     id: 1,
     logo: require("../assets/dummyData/hungryJacks.png"),
-    name: "Hungry Jack",
+    name: "Hungry Jacks",
     discountRate: "15% Off",
-    validity: "22 Sep 2029",
+    validity: "Valid until 22 Sep 2029",
     redeemStatus: false,
   },
   {
@@ -352,7 +352,7 @@ const coupons = [
     logo: require("../assets/dummyData/kfc_logo.png"),
     name: "KFC",
     discountRate: "25% Off",
-    validity: "22 Sep 2029",
+    validity: "Valid until 22 Sep 2029",
     redeemStatus: false,
   },
   {
@@ -360,7 +360,7 @@ const coupons = [
     logo: require("../assets/dummyData/pizzaHut.png"),
     name: "Pizza Hut",
     discountRate: "35% Off",
-    validity: "22 Sep 2029",
+    validity: " Valid until 22 Sep 2029",
     redeemStatus: false,
   },
   {
@@ -368,7 +368,7 @@ const coupons = [
     logo: require("../assets/dummyData/dominos.png"),
     name: "DOMINOS",
     discountRate: "15% Off",
-    validity: "22 Sep 2029",
+    validity: " Valid until 22 Sep 2029",
     redeemStatus: false,
   },
   {
@@ -376,7 +376,7 @@ const coupons = [
     logo: require("../assets/dummyData/starbucks.png"),
     name: "Starbucks",
     discountRate: "15% Off",
-    validity: "22 Sep 2029",
+    validity: " Valid until 22 Sep 2029",
     redeemStatus: false,
   },
   {
@@ -384,7 +384,7 @@ const coupons = [
     logo: require("../assets/dummyData/chinese.png"),
     name: "Chinese",
     discountRate: "15% Off",
-    validity: "22 Sep 2029",
+    validity: " Valid until 22 Sep 2029",
     redeemStatus: false,
   },
 ];

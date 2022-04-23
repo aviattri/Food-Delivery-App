@@ -299,18 +299,6 @@ const Home = ({
     );
   }
 
-  if (isLoading) {
-    return (
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {isLoading && <ActivityIndicator size="large" color={COLORS.black} />}
-      </View>
-    );
-  }
   return (
     <View
       style={{
@@ -374,7 +362,6 @@ const Home = ({
   );
 };
 function mapStateToProps(state) {
-  console.log(state.couponReducer);
   return {
     products: state.productReducer.products,
     favourites: state.favouriteReducer.favourites,
