@@ -25,6 +25,7 @@ import {
   MyCoupons,
   Settings,
   MyProfile,
+  EditProfile,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -172,6 +173,13 @@ const AppNavigation = () => {
               }}
               name="MyProfile"
               component={MyProfile}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="EditProfile"
+              component={EditProfile}
             />
           </>
         )}

@@ -38,7 +38,7 @@ const MyProfile = ({ navigation }) => {
         rightComponent={
           <TouchableOpacity
             style={{ position: "absolute", top: 5, right: 5 }}
-            onPress={() => console.log("")}
+            onPress={() => navigation.navigate("EditProfile")}
           >
             <Text style={{ color: COLORS.orange, ...FONTS.h3 }}>Edit</Text>
           </TouchableOpacity>

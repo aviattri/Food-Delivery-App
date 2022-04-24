@@ -22,6 +22,8 @@ import OrderCard from "./OrderCard";
 import CouponLayout from "./CouponLayout";
 import NotificationItems from "./NotificationItem";
 import DisplayText from "./DisplayText";
+import VerticalFormInput from "./VerticalFormInput";
+
 export {
   TabButton,
   TextButton,
@@ -47,4 +49,5 @@ export {
   CouponLayout,
   NotificationItems,
   DisplayText,
+  VerticalFormInput,
 };

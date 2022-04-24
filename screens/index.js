@@ -25,6 +25,7 @@ import RateOrder from "./OrderHistory/RateOrder";
 import MyCoupons from "./Coupons/MyCoupons";
 import Settings from "./Settings/Settings";
 import MyProfile from "./Profile/MyProfile";
+import EditProfile from "./Profile/EditProfile";
 export {
   OnBoarding,
   Home,
@@ -51,4 +52,5 @@ export {
   MyCoupons,
   Settings,
   MyProfile,
+  EditProfile,
 };
