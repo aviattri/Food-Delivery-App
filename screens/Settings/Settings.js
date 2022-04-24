@@ -66,6 +66,7 @@ const Settings = ({ navigation }) => {
           label={"Change Password"}
           expoIcon={true}
           icon={"lock"}
+          onPress={() => navigation.navigate("ChangePassword")}
         />
         <SettingTextButton label={"Preferences"} icon={icons.filter} />
         <SettingTextButton

@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import TextIconButton from "./TextIconButton";
-import { FONTS, SIZES, COLORS } from "../constants";
+import { FONTS, SIZES, COLORS, icons } from "../constants";
 import LineDivider from "./LineDivider";
 
 const SettingTextButton = ({ label, onPress, expoIcon, icon, lastItem }) => {
@@ -19,6 +19,7 @@ const SettingTextButton = ({ label, onPress, expoIcon, icon, lastItem }) => {
         iconStyle={{ tintColor: COLORS.orange }}
         expoIcon={expoIcon}
         icon={icon}
+        onPress={onPress}
       />
       {!lastItem && (
         <LineDivider

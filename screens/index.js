@@ -26,6 +26,7 @@ import MyCoupons from "./Coupons/MyCoupons";
 import Settings from "./Settings/Settings";
 import MyProfile from "./Profile/MyProfile";
 import EditProfile from "./Profile/EditProfile";
+import ChangePassword from "./Authentication/ChangePassword";
 export {
   OnBoarding,
   Home,
@@ -53,4 +54,5 @@ export {
   Settings,
   MyProfile,
   EditProfile,
+  ChangePassword,
 };

@@ -26,6 +26,7 @@ import {
   Settings,
   MyProfile,
   EditProfile,
+  ChangePassword,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -180,6 +181,13 @@ const AppNavigation = () => {
               }}
               name="EditProfile"
               component={EditProfile}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="ChangePassword"
+              component={ChangePassword}
             />
           </>
         )}
