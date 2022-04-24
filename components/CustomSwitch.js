@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { COLORS, FONTS, SIZES } from "../constants";
 
-const CustomSwitch = ({ value, onChange }) => {
+const CustomSwitch = ({ value, onChange, label = true }) => {
   return (
     <TouchableWithoutFeedback onPress={() => onChange(!value)}>
       <View style={{ flexDirection: "row" }}>
@@ -19,15 +19,17 @@ const CustomSwitch = ({ value, onChange }) => {
           />
         </View>
         {/* text */}
-        <Text
-          style={{
-            color: value ? COLORS.primary : COLORS.gray,
-            marginLeft: SIZES.base,
-            ...FONTS.base,
-          }}
-        >
-          SAVE ME
-        </Text>
+        {label && (
+          <Text
+            style={{
+              color: value ? COLORS.primary : COLORS.gray,
+              marginLeft: SIZES.base,
+              ...FONTS.base,
+            }}
+          >
+            SAVE ME
+          </Text>
+        )}
       </View>
     </TouchableWithoutFeedback>
   );

@@ -27,6 +27,8 @@ import Settings from "./Settings/Settings";
 import MyProfile from "./Profile/MyProfile";
 import EditProfile from "./Profile/EditProfile";
 import ChangePassword from "./Authentication/ChangePassword";
+import NotificationSettings from "./Notification/NotificationSettings";
+
 export {
   OnBoarding,
   Home,
@@ -55,4 +57,5 @@ export {
   MyProfile,
   EditProfile,
   ChangePassword,
+  NotificationSettings,
 };

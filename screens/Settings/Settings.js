@@ -1,16 +1,8 @@
 import { View, Text, ScrollView, Icons } from "react-native";
 import React from "react";
-import { COLORS, SIZES, icons, dummyData, FONTS } from "../../constants";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { COLORS, SIZES, icons } from "../../constants";
 
-import {
-  Header,
-  IconButton,
-  LineDivider,
-  SettingTextButton,
-  TextButton,
-  TextIconButton,
-} from "../../components";
+import { Header, IconButton, SettingTextButton } from "../../components";
 
 const Settings = ({ navigation }) => {
   function renderHeader() {

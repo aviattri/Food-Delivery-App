@@ -27,6 +27,7 @@ import {
   MyProfile,
   EditProfile,
   ChangePassword,
+  NotificationSettings,
 } from "../screens";
 
 import { AppContext } from "../appContext/AppContextProvider";
@@ -188,6 +189,13 @@ const AppNavigation = () => {
               }}
               name="ChangePassword"
               component={ChangePassword}
+            />
+            <Stack.Screen
+              screenOptions={{
+                headerShown: false,
+              }}
+              name="NotificationSettings"
+              component={NotificationSettings}
             />
           </>
         )}
