@@ -23,7 +23,7 @@ import CouponLayout from "./CouponLayout";
 import NotificationItems from "./NotificationItem";
 import DisplayText from "./DisplayText";
 import VerticalFormInput from "./VerticalFormInput";
-
+import SettingTextButton from "./SettingTextButton";
 export {
   TabButton,
   TextButton,
@@ -50,4 +50,5 @@ export {
   NotificationItems,
   DisplayText,
   VerticalFormInput,
+  SettingTextButton,
 };

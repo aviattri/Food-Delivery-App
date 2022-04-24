@@ -7,6 +7,7 @@ import {
   Header,
   IconButton,
   LineDivider,
+  SettingTextButton,
   TextButton,
   TextIconButton,
 } from "../../components";
@@ -61,171 +62,31 @@ const Settings = ({ navigation }) => {
           borderRadius: SIZES.radius,
         }}
       >
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
+        <SettingTextButton
           label={"Change Password"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
           expoIcon={true}
           icon={"lock"}
         />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Preferences"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          icon={icons.filter}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
+        <SettingTextButton label={"Preferences"} icon={icons.filter} />
+        <SettingTextButton
           label={"Notifications"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
           expoIcon={true}
           icon={"bells"}
         />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Data use"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          icon={icons.profile}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Language"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          icon={icons.help}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Check Update"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          icon={icons.clock}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Contact Us"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          expoIcon={false}
-          icon={icons.call}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-          label={"Privacy Policy"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
-          icon={icons.help}
-          iconStyle={{ tintColor: COLORS.orange }}
-        />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
+        <SettingTextButton label={"Data use"} icon={icons.profile} />
+        <SettingTextButton label={"Language"} icon={icons.help} />
+        <SettingTextButton label={"Check Update"} icon={icons.clock} />
+        <SettingTextButton label={"Contact Us"} icon={icons.call} />
+        <SettingTextButton label={"Privacy Policy"} icon={icons.help} />
+        <SettingTextButton
           label={"Terms and Conditions"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
           expoIcon={true}
           icon={"user"}
         />
-        <LineDivider
-          lineStyle={{
-            backgroundColor: COLORS.gray2,
-          }}
-        />
-        <TextIconButton
-          containerStyle={{
-            height: 75,
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
+        <SettingTextButton
           label={"Logout"}
-          labelStyle={{ paddingHorizontal: SIZES.padding, ...FONTS.body3 }}
-          iconPosition={"LEFT"}
           icon={icons.logout}
-          iconStyle={{ tintColor: COLORS.orange }}
+          lastItem={true}
         />
       </ScrollView>
       {/* Footer  */}
